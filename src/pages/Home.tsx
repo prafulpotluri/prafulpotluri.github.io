@@ -31,14 +31,14 @@ const Home = () => {
                 <div className="inline-block w-16 h-1 bg-primary mb-8"></div>
               </div>
               
-              <h1 className="text-5xl md:text-7xl font-bold mb-6 leading-tight text-foreground">
+              <p className="text-lg md:text-xl text-primary font-semibold mb-4">
+                Data Analyst
+              </p>
+              
+              <h1 className="text-5xl md:text-7xl font-bold mb-10 leading-tight text-foreground">
                 Making data look like{" "}
                 <span className="text-primary">common sense</span>
               </h1>
-              
-              <p className="text-lg md:text-xl text-muted-foreground mb-10 max-w-3xl leading-relaxed">
-                Driven Data Science graduate with hands-on data analyst experience, passionate about applying analytical insights to real-world challenges and contributing to data-driven solutions.
-              </p>
               
               <div className="flex flex-col sm:flex-row gap-4 items-start">
                 <Button
