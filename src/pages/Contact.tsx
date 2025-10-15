@@ -3,7 +3,7 @@ import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Textarea } from "@/components/ui/textarea";
 import { Label } from "@/components/ui/label";
-import { Mail, Phone, Linkedin, Send, Github } from "lucide-react";
+import { Mail, Linkedin, Send, Github } from "lucide-react";
 import { toast } from "sonner";
 
 const Contact = () => {
@@ -84,19 +84,6 @@ const Contact = () => {
                 <div>
                   <p className="font-medium">Email</p>
                   <p className="text-sm text-muted-foreground">prafulpotluri@gmail.com</p>
-                </div>
-              </a>
-
-              <a
-                href="tel:+12692074064"
-                className="flex items-center p-4 bg-card rounded-xl border border-border/50 hover:border-primary/50 transition-all hover-lift group"
-              >
-                <div className="w-12 h-12 bg-primary/10 rounded-lg flex items-center justify-center mr-4 group-hover:bg-primary/20 transition-colors">
-                  <Phone className="w-6 h-6 text-primary" />
-                </div>
-                <div>
-                  <p className="font-medium">Phone</p>
-                  <p className="text-sm text-muted-foreground">+1 269 207 4064</p>
                 </div>
               </a>
 
