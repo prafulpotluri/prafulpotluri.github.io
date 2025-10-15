@@ -34,7 +34,7 @@ const Experience = () => {
       <div className="container mx-auto px-6 max-w-5xl">
         <div className="mb-12 animate-fade-in">
           <h1 className="text-4xl md:text-5xl font-bold mb-4">Experience</h1>
-          <div className="h-1 w-20 bg-primary rounded-full"></div>
+          <div className="h-1 w-20 bg-primary rounded-sm"></div>
         </div>
 
         <div className="relative">
@@ -51,7 +51,7 @@ const Experience = () => {
                 {/* Timeline dot */}
                 <div className="absolute left-0 top-6 w-4 h-4 bg-primary rounded-full border-4 border-background hidden md:block -translate-x-1.5"></div>
 
-                <div className="bg-card p-8 rounded-2xl shadow-lg border border-primary/10 hover-lift">
+                <div className="bg-card p-8 rounded-xl shadow-lg border border-border/50 hover-lift">
                   <div className="flex flex-col md:flex-row md:items-center md:justify-between mb-4">
                     <div>
                       <h2 className="text-2xl font-semibold mb-2">{exp.title}</h2>

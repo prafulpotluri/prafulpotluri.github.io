@@ -52,9 +52,9 @@ export default {
           foreground: "hsl(var(--card-foreground))",
         },
         'sky-blue': {
-          DEFAULT: "hsl(var(--sky-blue))",
-          light: "hsl(var(--sky-blue-light))",
-          dark: "hsl(var(--sky-blue-dark))",
+          DEFAULT: "hsl(var(--accent-yellow))",
+          light: "hsl(var(--accent-yellow-light))",
+          dark: "hsl(var(--accent-yellow-dark))",
         },
       },
       borderRadius: {

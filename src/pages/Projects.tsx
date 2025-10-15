@@ -46,14 +46,14 @@ const Projects = () => {
       <div className="container mx-auto px-6 max-w-6xl">
         <div className="mb-12 animate-fade-in">
           <h1 className="text-4xl md:text-5xl font-bold mb-4">Projects</h1>
-          <div className="h-1 w-20 bg-primary rounded-full"></div>
+          <div className="h-1 w-20 bg-primary rounded-sm"></div>
         </div>
 
         <div className="space-y-12">
           {projects.map((project, index) => (
             <div
               key={index}
-              className="bg-card rounded-2xl shadow-lg border border-primary/10 overflow-hidden hover-lift animate-slide-up"
+              className="bg-card rounded-xl shadow-lg border border-border/50 overflow-hidden hover-lift animate-slide-up"
               style={{ animationDelay: `${index * 0.15}s` }}
             >
               <div className="grid md:grid-cols-2 gap-8">

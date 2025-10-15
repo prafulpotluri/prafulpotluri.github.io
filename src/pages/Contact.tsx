@@ -47,7 +47,7 @@ const Contact = () => {
       <div className="container mx-auto px-6 max-w-5xl">
         <div className="mb-12 animate-fade-in">
           <h1 className="text-4xl md:text-5xl font-bold mb-4">Contact</h1>
-          <div className="h-1 w-20 bg-primary rounded-full"></div>
+          <div className="h-1 w-20 bg-primary rounded-sm"></div>
         </div>
 
         <div className="grid md:grid-cols-2 gap-12">
@@ -63,7 +63,7 @@ const Contact = () => {
                 href="https://www.linkedin.com/in/praful-chand-potluri-5a261117b"
                 target="_blank"
                 rel="noopener noreferrer"
-                className="flex items-center p-4 bg-card rounded-xl border border-primary/10 hover:border-primary/30 transition-all hover-lift group"
+                className="flex items-center p-4 bg-card rounded-xl border border-border/50 hover:border-primary/50 transition-all hover-lift group"
               >
                 <div className="w-12 h-12 bg-primary/10 rounded-lg flex items-center justify-center mr-4 group-hover:bg-primary/20 transition-colors">
                   <Linkedin className="w-6 h-6 text-primary" />
@@ -76,7 +76,7 @@ const Contact = () => {
 
               <a
                 href="mailto:prafulpotluri@gmail.com"
-                className="flex items-center p-4 bg-card rounded-xl border border-primary/10 hover:border-primary/30 transition-all hover-lift group"
+                className="flex items-center p-4 bg-card rounded-xl border border-border/50 hover:border-primary/50 transition-all hover-lift group"
               >
                 <div className="w-12 h-12 bg-primary/10 rounded-lg flex items-center justify-center mr-4 group-hover:bg-primary/20 transition-colors">
                   <Mail className="w-6 h-6 text-primary" />
@@ -89,7 +89,7 @@ const Contact = () => {
 
               <a
                 href="tel:+12692074064"
-                className="flex items-center p-4 bg-card rounded-xl border border-primary/10 hover:border-primary/30 transition-all hover-lift group"
+                className="flex items-center p-4 bg-card rounded-xl border border-border/50 hover:border-primary/50 transition-all hover-lift group"
               >
                 <div className="w-12 h-12 bg-primary/10 rounded-lg flex items-center justify-center mr-4 group-hover:bg-primary/20 transition-colors">
                   <Phone className="w-6 h-6 text-primary" />
@@ -104,7 +104,7 @@ const Contact = () => {
 
           {/* Contact Form */}
           <div className="animate-slide-up" style={{ animationDelay: "0.2s" }}>
-            <div className="bg-card p-8 rounded-2xl shadow-lg border border-primary/10">
+            <div className="bg-card p-8 rounded-xl shadow-lg border border-border/50">
               <h2 className="text-2xl font-semibold mb-6">Send a Message</h2>
               
               <form onSubmit={handleSubmit} className="space-y-6">

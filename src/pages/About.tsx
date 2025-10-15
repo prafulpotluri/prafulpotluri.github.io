@@ -4,12 +4,12 @@ const About = () => {
       <div className="container mx-auto px-6 max-w-6xl">
         <div className="mb-12 animate-fade-in">
           <h1 className="text-4xl md:text-5xl font-bold mb-4">About Me</h1>
-          <div className="h-1 w-20 bg-primary rounded-full"></div>
+          <div className="h-1 w-20 bg-primary rounded-sm"></div>
         </div>
 
         <div className="grid md:grid-cols-2 gap-12 items-start">
           <div className="space-y-6 animate-slide-up">
-            <div className="bg-card p-8 rounded-2xl shadow-lg border border-primary/10">
+            <div className="bg-card p-8 rounded-xl shadow-lg border border-border/50 hover-lift">
               <h2 className="text-2xl font-semibold mb-4 text-primary">Current Status</h2>
               <p className="text-muted-foreground leading-relaxed">
                 I'm currently pursuing my Master of Science in Data Science at Western Michigan University, 
@@ -18,7 +18,7 @@ const About = () => {
               </p>
             </div>
 
-            <div className="bg-card p-8 rounded-2xl shadow-lg border border-primary/10">
+            <div className="bg-card p-8 rounded-xl shadow-lg border border-border/50 hover-lift">
               <h2 className="text-2xl font-semibold mb-4 text-primary">My Passion</h2>
               <p className="text-muted-foreground leading-relaxed">
                 I'm passionate about data engineering, machine learning, and the art of turning complex 
@@ -28,7 +28,7 @@ const About = () => {
               </p>
             </div>
 
-            <div className="bg-card p-8 rounded-2xl shadow-lg border border-primary/10">
+            <div className="bg-card p-8 rounded-xl shadow-lg border border-border/50 hover-lift">
               <h2 className="text-2xl font-semibold mb-4 text-primary">Professional Focus</h2>
               <p className="text-muted-foreground leading-relaxed">
                 With hands-on experience in data engineering, analytics, and system integration, I bring 
@@ -39,7 +39,7 @@ const About = () => {
           </div>
 
           <div className="animate-slide-up" style={{ animationDelay: '0.2s' }}>
-            <div className="bg-gradient-to-br from-primary/5 to-primary/10 p-8 rounded-2xl border border-primary/20">
+            <div className="bg-gradient-to-br from-primary/10 to-primary/5 p-8 rounded-xl border border-primary/30">
               <h2 className="text-2xl font-semibold mb-6">Quick Facts</h2>
               <div className="space-y-4">
                 <div className="flex items-start">

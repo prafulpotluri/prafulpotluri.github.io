@@ -52,7 +52,7 @@ const Skills = () => {
       <div className="container mx-auto px-6 max-w-6xl">
         <div className="mb-12 animate-fade-in">
           <h1 className="text-4xl md:text-5xl font-bold mb-4">Skills</h1>
-          <div className="h-1 w-20 bg-primary rounded-full"></div>
+          <div className="h-1 w-20 bg-primary rounded-sm"></div>
         </div>
 
         <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
@@ -61,7 +61,7 @@ const Skills = () => {
             return (
               <div
                 key={index}
-                className="group bg-card rounded-2xl shadow-lg border border-primary/10 p-6 hover-lift animate-slide-up"
+                className="group bg-card rounded-xl shadow-lg border border-border/50 p-6 hover-lift animate-slide-up"
                 style={{ animationDelay: `${index * 0.1}s` }}
               >
                 <div
@@ -87,7 +87,7 @@ const Skills = () => {
           })}
         </div>
 
-        <div className="mt-16 bg-gradient-to-br from-primary/5 to-primary/10 rounded-2xl p-8 border border-primary/20 animate-fade-in">
+        <div className="mt-16 bg-gradient-to-br from-primary/10 to-primary/5 rounded-xl p-8 border border-primary/30 animate-fade-in">
           <h2 className="text-2xl font-semibold mb-4 text-center">Core Competencies</h2>
           <div className="grid md:grid-cols-3 gap-6 mt-6">
             <div className="text-center">
