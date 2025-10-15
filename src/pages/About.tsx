@@ -1,78 +1,58 @@
 const About = () => {
   return (
-    <div className="min-h-screen pt-24 pb-16">
+    <div className="min-h-screen pt-24 pb-16 bg-gradient-to-b from-surface-alt to-background">
       <div className="container mx-auto px-6 max-w-6xl">
         <div className="mb-12 animate-fade-in">
-          <h1 className="text-4xl md:text-5xl font-bold mb-4">About Me</h1>
+          <h1 className="text-4xl md:text-5xl font-bold mb-4 text-foreground">About Me</h1>
           <div className="h-1 w-20 bg-primary rounded-sm"></div>
         </div>
 
-        <div className="grid md:grid-cols-2 gap-12 items-start">
+        <div className="grid lg:grid-cols-2 gap-12 items-center">
+          {/* Left: Bio */}
           <div className="space-y-6 animate-slide-up">
-            <div className="bg-card p-8 rounded-xl shadow-lg border border-border/50 hover-lift">
-              <h2 className="text-2xl font-semibold mb-4 text-primary">Current Status</h2>
-              <p className="text-muted-foreground leading-relaxed">
-                I'm currently pursuing my Master of Science in Data Science at Western Michigan University, 
-                set to graduate in April 2025. My academic journey has been driven by a deep curiosity about 
-                how data can transform decision-making and create meaningful impact.
-              </p>
-            </div>
-
-            <div className="bg-card p-8 rounded-xl shadow-lg border border-border/50 hover-lift">
-              <h2 className="text-2xl font-semibold mb-4 text-primary">My Passion</h2>
-              <p className="text-muted-foreground leading-relaxed">
-                I'm passionate about data engineering, machine learning, and the art of turning complex 
-                analytics into actionable insights. Whether it's building robust data pipelines, developing 
-                intelligent systems, or optimizing workflows, I thrive on challenges that push the boundaries 
-                of what's possible with data.
-              </p>
-            </div>
-
-            <div className="bg-card p-8 rounded-xl shadow-lg border border-border/50 hover-lift">
-              <h2 className="text-2xl font-semibold mb-4 text-primary">Professional Focus</h2>
-              <p className="text-muted-foreground leading-relaxed">
-                With hands-on experience in data engineering, analytics, and system integration, I bring 
-                a blend of technical expertise and practical problem-solving. I'm excited to contribute 
-                to innovative, data-driven solutions that make a real difference.
-              </p>
-            </div>
+            <p className="text-lg text-muted-foreground leading-relaxed">
+              Driven Data Science graduate from <span className="text-primary font-semibold">Western Michigan University</span> (April 2025) with proven experience in data analyst roles and a passion for applying analytical insights to real-world challenges.
+            </p>
+            
+            <p className="text-lg text-muted-foreground leading-relaxed">
+              I bring a blend of technical expertise and hands-on project experience to dynamic, data-focused teams, contributing to innovative, data-driven solutions and continuous improvement.
+            </p>
+            
+            <p className="text-lg text-muted-foreground leading-relaxed">
+              I'm currently seeking opportunities in <span className="text-primary font-semibold">Data Analyst</span> roles where I can leverage my skills in data engineering, machine learning, and analytics to drive meaningful business outcomes.
+            </p>
           </div>
 
+          {/* Right: Quick Facts */}
           <div className="animate-slide-up" style={{ animationDelay: '0.2s' }}>
-            <div className="bg-gradient-to-br from-primary/10 to-primary/5 p-8 rounded-xl border border-primary/30">
-              <h2 className="text-2xl font-semibold mb-6">Quick Facts</h2>
-              <div className="space-y-4">
-                <div className="flex items-start">
-                  <div className="w-2 h-2 bg-primary rounded-full mt-2 mr-4"></div>
-                  <div>
-                    <p className="font-medium">Education</p>
-                    <p className="text-muted-foreground text-sm">M.S. Data Science - WMU (2025)</p>
-                    <p className="text-muted-foreground text-sm">B.Tech Computer Science - JNTU (2021)</p>
-                  </div>
+            <div className="bg-card rounded-2xl shadow-lg border border-border p-8">
+              <h3 className="text-sm font-semibold text-primary mb-6 tracking-wider uppercase">Quick Facts</h3>
+              
+              <div className="space-y-6">
+                <div>
+                  <div className="text-3xl font-bold text-primary mb-2">M.S.</div>
+                  <p className="text-muted-foreground">Data Science, WMU (2025)</p>
                 </div>
                 
-                <div className="flex items-start">
-                  <div className="w-2 h-2 bg-primary rounded-full mt-2 mr-4"></div>
-                  <div>
-                    <p className="font-medium">Location</p>
-                    <p className="text-muted-foreground text-sm">Kalamazoo, Michigan</p>
-                  </div>
+                <div className="h-px bg-border"></div>
+                
+                <div>
+                  <div className="text-3xl font-bold text-primary mb-2">2+</div>
+                  <p className="text-muted-foreground">Years of Experience</p>
                 </div>
                 
-                <div className="flex items-start">
-                  <div className="w-2 h-2 bg-primary rounded-full mt-2 mr-4"></div>
-                  <div>
-                    <p className="font-medium">Interests</p>
-                    <p className="text-muted-foreground text-sm">Data Engineering, Machine Learning, Analytics</p>
-                  </div>
+                <div className="h-px bg-border"></div>
+                
+                <div>
+                  <div className="text-3xl font-bold text-primary mb-2">3</div>
+                  <p className="text-muted-foreground">Featured Projects</p>
                 </div>
                 
-                <div className="flex items-start">
-                  <div className="w-2 h-2 bg-primary rounded-full mt-2 mr-4"></div>
-                  <div>
-                    <p className="font-medium">Certifications</p>
-                    <p className="text-muted-foreground text-sm">Google Data Analytics Professional (Coursera, 2025)</p>
-                  </div>
+                <div className="h-px bg-border"></div>
+                
+                <div>
+                  <div className="text-3xl font-bold text-primary mb-2">99%</div>
+                  <p className="text-muted-foreground">Data Accuracy Rate</p>
                 </div>
               </div>
             </div>

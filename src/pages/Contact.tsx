@@ -3,7 +3,7 @@ import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Textarea } from "@/components/ui/textarea";
 import { Label } from "@/components/ui/label";
-import { Mail, Phone, Linkedin, Send } from "lucide-react";
+import { Mail, Phone, Linkedin, Send, Github } from "lucide-react";
 import { toast } from "sonner";
 
 const Contact = () => {
@@ -43,10 +43,10 @@ const Contact = () => {
   };
 
   return (
-    <div className="min-h-screen pt-24 pb-16">
+    <div className="min-h-screen pt-24 pb-16 bg-gradient-to-b from-surface-alt to-background">
       <div className="container mx-auto px-6 max-w-5xl">
         <div className="mb-12 animate-fade-in">
-          <h1 className="text-4xl md:text-5xl font-bold mb-4">Contact</h1>
+          <h1 className="text-4xl md:text-5xl font-bold mb-4 text-foreground">Contact</h1>
           <div className="h-1 w-20 bg-primary rounded-sm"></div>
         </div>
 
@@ -97,6 +97,21 @@ const Contact = () => {
                 <div>
                   <p className="font-medium">Phone</p>
                   <p className="text-sm text-muted-foreground">+1 269 207 4064</p>
+                </div>
+              </a>
+
+              <a
+                href="https://github.com/prafulpotluri"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="flex items-center p-4 bg-card rounded-xl border border-border/50 hover:border-primary/50 transition-all hover-lift group"
+              >
+                <div className="w-12 h-12 bg-primary/10 rounded-lg flex items-center justify-center mr-4 group-hover:bg-primary/20 transition-colors">
+                  <Github className="w-6 h-6 text-primary" />
+                </div>
+                <div>
+                  <p className="font-medium">GitHub</p>
+                  <p className="text-sm text-muted-foreground">View my repositories</p>
                 </div>
               </a>
             </div>

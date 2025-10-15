@@ -42,10 +42,10 @@ const Projects = () => {
   ];
 
   return (
-    <div className="min-h-screen pt-24 pb-16">
+    <div className="min-h-screen pt-24 pb-16 bg-gradient-to-b from-background to-surface-alt">
       <div className="container mx-auto px-6 max-w-6xl">
         <div className="mb-12 animate-fade-in">
-          <h1 className="text-4xl md:text-5xl font-bold mb-4">Projects</h1>
+          <h1 className="text-4xl md:text-5xl font-bold mb-4 text-foreground">Projects</h1>
           <div className="h-1 w-20 bg-primary rounded-sm"></div>
         </div>
 
@@ -98,17 +98,11 @@ const Projects = () => {
                     <Button
                       variant="outline"
                       size="sm"
-                      className="border-primary/30 hover:border-primary hover:bg-primary/5"
+                      className="border-2 border-primary/50 text-primary hover:bg-primary hover:text-white transition-all"
+                      onClick={() => window.open("https://github.com/prafulpotluri", "_blank")}
                     >
                       <Github className="w-4 h-4 mr-2" />
-                      View Code
-                    </Button>
-                    <Button
-                      size="sm"
-                      className="bg-primary hover:bg-primary/90 text-primary-foreground"
-                    >
-                      <ExternalLink className="w-4 h-4 mr-2" />
-                      View Project
+                      View on GitHub
                     </Button>
                   </div>
                 </div>

@@ -48,10 +48,10 @@ const Skills = () => {
   ];
 
   return (
-    <div className="min-h-screen pt-24 pb-16">
+    <div className="min-h-screen pt-24 pb-16 bg-gradient-to-b from-background to-surface-alt">
       <div className="container mx-auto px-6 max-w-6xl">
         <div className="mb-12 animate-fade-in">
-          <h1 className="text-4xl md:text-5xl font-bold mb-4">Skills</h1>
+          <h1 className="text-4xl md:text-5xl font-bold mb-4 text-foreground">Skills</h1>
           <div className="h-1 w-20 bg-primary rounded-sm"></div>
         </div>
 
@@ -76,7 +76,7 @@ const Skills = () => {
                   {category.skills.map((skill, idx) => (
                     <span
                       key={idx}
-                      className="px-3 py-1.5 bg-secondary text-secondary-foreground text-sm rounded-lg transition-all duration-300 hover:bg-primary hover:text-primary-foreground hover:scale-105"
+                      className="px-3 py-1.5 bg-primary/10 text-primary text-sm font-medium rounded-lg transition-all duration-300 hover:bg-primary hover:text-white hover:scale-105 border border-primary/20"
                     >
                       {skill}
                     </span>
@@ -87,8 +87,8 @@ const Skills = () => {
           })}
         </div>
 
-        <div className="mt-16 bg-gradient-to-br from-primary/10 to-primary/5 rounded-xl p-8 border border-primary/30 animate-fade-in">
-          <h2 className="text-2xl font-semibold mb-4 text-center">Core Competencies</h2>
+        <div className="mt-16 bg-gradient-to-br from-primary/10 to-primary/5 rounded-xl p-8 border border-primary/30 shadow-md animate-fade-in">
+          <h2 className="text-2xl font-semibold mb-4 text-center text-foreground">Core Competencies</h2>
           <div className="grid md:grid-cols-3 gap-6 mt-6">
             <div className="text-center">
               <h3 className="font-semibold text-primary mb-2">Data Engineering</h3>
