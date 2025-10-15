@@ -1,4 +1,4 @@
-import { Github, Linkedin, Mail, Phone } from "lucide-react";
+import { Github, Linkedin, Mail } from "lucide-react";
 import { Button } from "@/components/ui/button";
 
 const Footer = () => {
@@ -58,14 +58,6 @@ const Footer = () => {
           <p className="text-sm text-muted-foreground text-center">
             © {currentYear} Praful Chand Potluri. All rights reserved.
           </p>
-
-          {/* Contact Info */}
-          <div className="flex items-center gap-2 text-sm text-muted-foreground">
-            <Phone className="h-4 w-4" />
-            <a href="tel:+15712002893" className="hover:text-primary transition-colors">
-              +1 (571) 200-2893
-            </a>
-          </div>
         </div>
       </div>
     </footer>
