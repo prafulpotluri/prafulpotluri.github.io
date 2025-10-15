@@ -64,15 +64,14 @@ const Home = () => {
             </div>
 
             {/* Photo */}
-            <div className="animate-fade-in lg:justify-self-end">
-              <div className="relative">
-                <div className="absolute -inset-4 bg-gradient-to-r from-primary/20 to-sky-blue-light/20 rounded-2xl blur-2xl"></div>
-                <img 
-                  src={prafulPhoto} 
-                  alt="Praful Chand Potluri - Data Analyst"
-                  className="relative rounded-2xl shadow-2xl w-full max-w-md lg:max-w-lg object-cover"
-                />
-              </div>
+            <div className="animate-fade-in lg:justify-self-end relative">
+              <div className="absolute top-10 -right-10 w-40 h-40 bg-primary/5 rounded-full blur-3xl"></div>
+              <div className="absolute -bottom-10 -left-10 w-32 h-32 bg-sky-blue-light/10 rounded-full blur-2xl"></div>
+              <img 
+                src={prafulPhoto} 
+                alt="Praful Chand Potluri - Data Analyst"
+                className="relative rounded-lg w-full max-w-md lg:max-w-lg object-cover opacity-95 hover:opacity-100 transition-opacity duration-300"
+              />
             </div>
           </div>
         </div>
