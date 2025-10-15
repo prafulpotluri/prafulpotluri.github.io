@@ -25,7 +25,7 @@ const Home = () => {
         <div className="absolute top-1/2 right-1/3 w-16 h-16 bg-primary/10 rounded-lg rotate-45"></div>
         
         {/* Background Photo */}
-        <div className="absolute right-0 top-0 bottom-0 w-full lg:w-3/5 opacity-30 lg:opacity-60">
+        <div className="absolute right-0 top-0 bottom-0 w-full lg:w-1/2 opacity-30 lg:opacity-60">
           <div className="absolute top-10 -right-10 w-40 h-40 bg-primary/5 rounded-full blur-3xl"></div>
           <div className="absolute -bottom-10 -left-10 w-32 h-32 bg-sky-blue-light/10 rounded-full blur-2xl"></div>
           <img 
@@ -40,6 +40,10 @@ const Home = () => {
             <div className="mb-6">
               <div className="inline-block w-16 h-1 bg-primary mb-8"></div>
             </div>
+            
+            <h2 className="text-3xl md:text-5xl font-bold text-foreground mb-3">
+              Praful Chand Potluri
+            </h2>
             
             <p className="text-lg md:text-xl text-primary font-semibold mb-4">
               Data Analyst
