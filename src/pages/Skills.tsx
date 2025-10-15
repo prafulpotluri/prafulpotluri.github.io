@@ -69,7 +69,7 @@ const Skills = () => {
   ];
 
   const stats = [
-    { icon: Calendar, number: "5+", label: "Years Experience" },
+    { icon: Calendar, number: "4+", label: "Years Experience" },
     { icon: Star, number: "20+", label: "Technologies" },
     { icon: Briefcase, number: "10+", label: "Projects" }
   ];
