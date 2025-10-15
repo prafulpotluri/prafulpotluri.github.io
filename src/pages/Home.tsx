@@ -1,6 +1,6 @@
 import { useNavigate } from "react-router-dom";
 import { Button } from "@/components/ui/button";
-import { ArrowRight, Download } from "lucide-react";
+import { ArrowRight, Download, Linkedin, Github, Mail } from "lucide-react";
 import prafulPhoto from "@/assets/praful-photo.jpg";
 
 const Home = () => {
@@ -49,10 +49,15 @@ const Home = () => {
               Data Analyst
             </p>
             
-            <h1 className="text-5xl md:text-7xl font-bold mb-10 leading-tight text-foreground">
+            <h1 className="text-5xl md:text-7xl font-bold mb-6 leading-tight text-foreground">
               Making data look like{" "}
               <span className="text-primary">common sense</span>
             </h1>
+            
+            <p className="text-lg md:text-xl text-muted-foreground mb-10 max-w-2xl leading-relaxed">
+              Data Science graduate specializing in machine learning, data engineering, and analytics. 
+              I transform complex data into actionable insights that drive real-world solutions.
+            </p>
             
             <div className="flex flex-col sm:flex-row gap-4 items-start">
               <Button
@@ -72,6 +77,53 @@ const Home = () => {
               >
                 <Download className="mr-2 h-5 w-5" />
                 Download Resume
+              </Button>
+            </div>
+
+            {/* Social Links */}
+            <div className="flex gap-4 mt-8 pt-8 border-t border-border/50">
+              <Button
+                variant="ghost"
+                size="icon"
+                asChild
+                className="hover:text-[#0077b5] transition-colors"
+              >
+                <a
+                  href="https://www.linkedin.com/in/praful-chand-potluri"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  aria-label="LinkedIn"
+                >
+                  <Linkedin className="h-5 w-5" />
+                </a>
+              </Button>
+              <Button
+                variant="ghost"
+                size="icon"
+                asChild
+                className="hover:text-foreground transition-colors"
+              >
+                <a
+                  href="https://github.com/prafulpotluri"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  aria-label="GitHub"
+                >
+                  <Github className="h-5 w-5" />
+                </a>
+              </Button>
+              <Button
+                variant="ghost"
+                size="icon"
+                asChild
+                className="hover:text-primary transition-colors"
+              >
+                <a
+                  href="mailto:prafulchandpotluri@gmail.com"
+                  aria-label="Email"
+                >
+                  <Mail className="h-5 w-5" />
+                </a>
               </Button>
             </div>
           </div>
