@@ -1,73 +1,83 @@
-# Welcome to your Lovable project
+# Praful Chand Potluri - Portfolio
 
-## Project info
+A modern, responsive portfolio website showcasing my experience as a Data Engineer and Data Scientist.
 
-**URL**: https://lovable.dev/projects/698f6cfe-a324-4b2e-a831-f382905ff55d
+## 🚀 Live Site
 
-## How can I edit this code?
+Visit the live portfolio: [https://prafulpotluri.github.io/](https://prafulpotluri.github.io/)
 
-There are several ways of editing your application.
+## 🛠️ Technologies Used
 
-**Use Lovable**
+This portfolio is built with modern web technologies:
 
-Simply visit the [Lovable Project](https://lovable.dev/projects/698f6cfe-a324-4b2e-a831-f382905ff55d) and start prompting.
+- **React** - UI component library
+- **TypeScript** - Type-safe JavaScript
+- **Vite** - Fast build tool and dev server
+- **Tailwind CSS** - Utility-first CSS framework
+- **shadcn/ui** - High-quality UI components
+- **React Router** - Client-side routing
+- **EmailJS** - Contact form functionality
 
-Changes made via Lovable will be committed automatically to this repo.
+## 📋 Features
 
-**Use your preferred IDE**
+- Responsive design that works on all devices
+- Dark/Light theme support
+- Interactive project showcases
+- Downloadable resume
+- Contact form with email integration
+- Smooth animations and transitions
 
-If you want to work locally using your own IDE, you can clone this repo and push changes. Pushed changes will also be reflected in Lovable.
+## 🏃‍♂️ Running Locally
 
-The only requirement is having Node.js & npm installed - [install with nvm](https://github.com/nvm-sh/nvm#installing-and-updating)
+### Prerequisites
 
-Follow these steps:
+- Node.js (v20 or higher)
+- npm or bun package manager
 
-```sh
-# Step 1: Clone the repository using the project's Git URL.
-git clone <YOUR_GIT_URL>
+### Installation
 
-# Step 2: Navigate to the project directory.
-cd <YOUR_PROJECT_NAME>
+```bash
+# Clone the repository
+git clone https://github.com/prafulpotluri/prafulpotluri.github.io.git
 
-# Step 3: Install the necessary dependencies.
-npm i
+# Navigate to the project directory
+cd prafulpotluri.github.io
 
-# Step 4: Start the development server with auto-reloading and an instant preview.
+# Install dependencies
+npm install
+# or
+bun install
+
+# Start the development server
 npm run dev
+# or
+bun run dev
 ```
 
-**Edit a file directly in GitHub**
+The site will be available at `http://localhost:8080`
 
-- Navigate to the desired file(s).
-- Click the "Edit" button (pencil icon) at the top right of the file view.
-- Make your changes and commit the changes.
+## 📦 Building for Production
 
-**Use GitHub Codespaces**
+```bash
+# Create production build
+npm run build
+# or
+bun run build
 
-- Navigate to the main page of your repository.
-- Click on the "Code" button (green button) near the top right.
-- Select the "Codespaces" tab.
-- Click on "New codespace" to launch a new Codespace environment.
-- Edit files directly within the Codespace and commit and push your changes once you're done.
+# Preview production build locally
+npm run preview
+# or
+bun run preview
+```
 
-## What technologies are used for this project?
+## 🚀 Deployment
 
-This project is built with:
+This portfolio is automatically deployed to GitHub Pages using GitHub Actions. Any push to the main branch triggers a new deployment.
 
-- Vite
-- TypeScript
-- React
-- shadcn-ui
-- Tailwind CSS
+## 📝 License
 
-## How can I deploy this project?
+This project is open source and available for personal and educational use.
 
-Simply open [Lovable](https://lovable.dev/projects/698f6cfe-a324-4b2e-a831-f382905ff55d) and click on Share -> Publish.
+## 📧 Contact
 
-## Can I connect a custom domain to my Lovable project?
-
-Yes, you can!
-
-To connect a domain, navigate to Project > Settings > Domains and click Connect Domain.
-
-Read more here: [Setting up a custom domain](https://docs.lovable.dev/features/custom-domain#custom-domain)
+Feel free to reach out through the contact form on the website or connect with me on [LinkedIn](https://www.linkedin.com/in/praful-chand-potluri/).
