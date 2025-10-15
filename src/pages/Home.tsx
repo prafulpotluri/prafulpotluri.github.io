@@ -123,6 +123,15 @@ const Home = () => {
             </div>
           </div>
         </div>
+
+        {/* Copyright */}
+        <div className="absolute bottom-8 left-0 right-0 z-10">
+          <div className="container mx-auto px-6">
+            <p className="text-sm text-muted-foreground text-center">
+              © {new Date().getFullYear()} Praful Chand Potluri. All rights reserved.
+            </p>
+          </div>
+        </div>
       </section>
     </div>
   );
