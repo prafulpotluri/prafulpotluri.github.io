@@ -1,5 +1,6 @@
+import prafulPhoto from "@/assets/praful-about.jpg";
+
 const About = () => {
-  const photoUrl = `${import.meta.env.BASE_URL}praful-about.jpg`;
   return (
     <div className="min-h-screen pt-24 pb-16 bg-gradient-to-b from-surface-alt to-background">
       <div className="container mx-auto px-6 max-w-6xl">
@@ -10,8 +11,8 @@ const About = () => {
           </div>
           <div className="flex-shrink-0">
             <img 
-              src={photoUrl} 
-              alt="Praful Bhujbal" 
+              src={prafulPhoto} 
+              alt="Data Analyst profile photo" 
               className="w-32 h-32 md:w-40 md:h-40 rounded-2xl object-cover shadow-lg border-2 border-primary/20"
             />
           </div>
