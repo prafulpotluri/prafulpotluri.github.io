@@ -114,7 +114,7 @@ const Home = () => {
                 className="hover:text-primary transition-colors"
               >
                 <a
-                  href="mailto:prafulchandpotluri@gmail.com"
+                  href="mailto:prafulpotluri@gmail.com"
                   aria-label="Email"
                 >
                   <Mail className="h-5 w-5" />
