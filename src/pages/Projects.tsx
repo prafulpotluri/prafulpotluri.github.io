@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { ExternalLink, Github, Sparkles, Calendar, Award, Code2 } from "lucide-react";
+import { ExternalLink, Github, Sparkles, Code2, Zap, TrendingUp } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Card } from "@/components/ui/card";
 import blackjackImg from "@/assets/project-blackjack.jpg";
@@ -7,10 +7,6 @@ import ecommerceImg from "@/assets/project-ecommerce.jpg";
 import careerImg from "@/assets/project-career.jpg";
 
 const Projects = () => {
-  const [activeCategory, setActiveCategory] = useState("All");
-
-  const categories = ["All", "Machine Learning", "Data Science", "Web Development"];
-
   const projects = [
     {
       title: "Blackjack Game with AI Assist",
@@ -22,10 +18,12 @@ const Projects = () => {
         "Combined rule-based logic (MDP) and learning-based models (DQN) for 25% more optimal suggestions",
         "Designed user-friendly interface with dynamic card displays and real-time score updates",
       ],
-      pullQuote: "30% boost in decision accuracy through AI-powered strategy tips",
-      date: "2024",
-      category: "Machine Learning",
-      impact: "Enhanced gameplay experience for multi-player environments",
+      stats: {
+        accuracy: "30%",
+        optimization: "25%",
+        impact: "Multi-player"
+      },
+      gradient: "from-blue-500/20 via-purple-500/20 to-pink-500/20",
       featured: true,
     },
     {
@@ -38,10 +36,12 @@ const Projects = () => {
         "Processed and analyzed large-scale e-commerce data",
         "Delivered personalized recommendations to enhance user experience",
       ],
-      pullQuote: "Revolutionizing product discovery through intelligent recommendations",
-      date: "2024",
-      category: "Data Science",
-      impact: "Improved user engagement and product discoverability",
+      stats: {
+        scale: "Large-scale",
+        technique: "ML + CF",
+        focus: "Personalization"
+      },
+      gradient: "from-emerald-500/20 via-cyan-500/20 to-teal-500/20",
       featured: false,
     },
     {
@@ -54,200 +54,93 @@ const Projects = () => {
         "Applied Random Forest algorithms for prediction accuracy",
         "Created intuitive visualizations for complex career data",
       ],
-      pullQuote: "Empowering career decisions with data-driven insights",
-      date: "2023",
-      category: "Data Science",
-      impact: "Helping professionals navigate career advancement opportunities",
+      stats: {
+        method: "Agile",
+        accuracy: "High",
+        type: "Interactive"
+      },
+      gradient: "from-orange-500/20 via-pink-500/20 to-rose-500/20",
       featured: false,
     },
   ];
 
-  const filteredProjects = activeCategory === "All" 
-    ? projects 
-    : projects.filter(p => p.category === activeCategory);
-
-  const featuredProject = projects[0];
-  const otherProjects = filteredProjects.slice(1);
-
   return (
-    <div className="min-h-screen pt-24 pb-20 bg-background">
+    <div className="min-h-screen pt-24 pb-16 relative overflow-hidden">
+      {/* Animated Background */}
+      <div className="absolute inset-0 bg-gradient-to-br from-background via-surface to-surface-alt -z-10" />
+      <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_top_right,_var(--tw-gradient-stops))] from-primary/5 via-transparent to-transparent -z-10" />
+      
       <div className="container mx-auto px-6 max-w-7xl">
-        {/* Header Section */}
-        <header className="mb-16 animate-fade-in">
-          <div className="flex items-center gap-3 mb-6">
-            <div className="w-1 h-12 bg-primary rounded-full" />
-            <div>
-              <p className="text-sm uppercase tracking-widest text-muted-foreground font-medium mb-1">
-                Portfolio
-              </p>
-              <h1 className="text-6xl md:text-7xl font-bold text-foreground leading-tight">
-                Featured<br />Projects
-              </h1>
-            </div>
+        {/* Header */}
+        <div className="mb-16 animate-fade-in text-center">
+          <div className="flex items-center justify-center gap-3 mb-4">
+            <Sparkles className="w-8 h-8 text-primary animate-pulse" />
+            <h1 className="text-5xl md:text-6xl font-bold bg-gradient-to-r from-foreground via-primary to-foreground bg-clip-text text-transparent">
+              Featured Projects
+            </h1>
           </div>
-          <p className="text-xl text-muted-foreground max-w-2xl leading-relaxed ml-7">
-            A curated collection of data science and machine learning solutions 
-            that solve real-world challenges through innovative approaches.
+          <div className="h-1 w-32 bg-gradient-to-r from-transparent via-primary to-transparent rounded-full mx-auto mb-6" />
+          <p className="text-lg text-muted-foreground max-w-2xl mx-auto leading-relaxed">
+            Innovative solutions powered by data science and machine learning
           </p>
-        </header>
-
-        {/* Category Filter Tabs */}
-        <div className="mb-16 border-b border-border">
-          <div className="flex gap-8 overflow-x-auto pb-px">
-            {categories.map((category) => (
-              <button
-                key={category}
-                onClick={() => setActiveCategory(category)}
-                className={`pb-4 px-1 text-sm font-medium whitespace-nowrap transition-all duration-300 relative ${
-                  activeCategory === category
-                    ? "text-foreground"
-                    : "text-muted-foreground hover:text-foreground"
-                }`}
-              >
-                {category}
-                {activeCategory === category && (
-                  <div className="absolute bottom-0 left-0 right-0 h-0.5 bg-primary animate-fade-in" />
-                )}
-              </button>
-            ))}
-          </div>
         </div>
 
-        {/* Hero Featured Project */}
-        <article className="mb-24 animate-fade-in">
-          <div className="grid lg:grid-cols-2 gap-12 items-center">
-            {/* Image */}
-            <div className="relative group order-2 lg:order-1">
-              <div className="aspect-[4/3] rounded-2xl overflow-hidden shadow-2xl">
-                <img
-                  src={featuredProject.image}
-                  alt={featuredProject.title}
-                  className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105"
-                />
-              </div>
-              <div className="absolute -bottom-6 -right-6 bg-primary text-primary-foreground px-6 py-3 rounded-xl shadow-xl">
-                <p className="text-sm font-medium uppercase tracking-wide">Featured Project</p>
-              </div>
-            </div>
-
-            {/* Content */}
-            <div className="order-1 lg:order-2 space-y-6">
-              <div className="flex items-center gap-4 text-sm text-muted-foreground">
-                <div className="flex items-center gap-2">
-                  <Calendar className="w-4 h-4" />
-                  <span>{featuredProject.date}</span>
-                </div>
-                <div className="w-1 h-1 rounded-full bg-muted-foreground" />
-                <span className="px-3 py-1 bg-primary/10 text-primary rounded-full font-medium">
-                  {featuredProject.category}
-                </span>
-              </div>
-
-              <h2 className="text-4xl md:text-5xl font-bold text-foreground leading-tight">
-                {featuredProject.title}
-              </h2>
-
-              {/* Pull Quote */}
-              <blockquote className="border-l-4 border-primary pl-6 py-2 my-8">
-                <p className="text-2xl font-medium text-foreground italic leading-relaxed">
-                  "{featuredProject.pullQuote}"
-                </p>
-              </blockquote>
-
-              <p className="text-lg text-muted-foreground leading-relaxed">
-                {featuredProject.description}
-              </p>
-
-              <div className="pt-4">
-                <h3 className="text-sm font-bold uppercase tracking-wide text-foreground mb-4">
-                  Key Technologies
-                </h3>
-                <div className="flex flex-wrap gap-2">
-                  {featuredProject.technologies.map((tech, idx) => (
-                    <span
-                      key={idx}
-                      className="px-4 py-2 bg-muted text-foreground text-sm font-medium rounded-lg hover:bg-primary hover:text-primary-foreground transition-all duration-300"
-                    >
-                      {tech}
-                    </span>
-                  ))}
-                </div>
-              </div>
-
-              <Button
-                size="lg"
-                className="bg-primary hover:bg-primary/90 text-primary-foreground mt-6"
-                onClick={() => window.open("https://github.com/prafulpotluri", "_blank")}
-              >
-                <Github className="w-5 h-5 mr-2" />
-                View Project
-                <ExternalLink className="w-4 h-4 ml-2" />
-              </Button>
-            </div>
+        {/* Bento Grid Layout */}
+        <div className="grid grid-cols-1 lg:grid-cols-3 gap-6 mb-8">
+          {/* Featured Large Project - Takes 2 columns */}
+          <div className="lg:col-span-2 lg:row-span-2">
+            <ProjectCard project={projects[0]} featured />
           </div>
-        </article>
 
-        {/* Divider */}
-        <div className="h-px bg-gradient-to-r from-transparent via-border to-transparent mb-24" />
+          {/* Stats Cards - Vertical stack */}
+          <div className="space-y-6">
+            <StatsCard
+              icon={<Code2 className="w-6 h-6" />}
+              title="Projects Completed"
+              value="10+"
+              description="Machine learning & AI solutions"
+              gradient="from-blue-500/10 to-purple-500/10"
+            />
+            <StatsCard
+              icon={<Zap className="w-6 h-6" />}
+              title="Technologies"
+              value="15+"
+              description="Frameworks & tools mastered"
+              gradient="from-emerald-500/10 to-cyan-500/10"
+            />
+            <StatsCard
+              icon={<TrendingUp className="w-6 h-6" />}
+              title="Impact"
+              value="30%+"
+              description="Average accuracy improvement"
+              gradient="from-orange-500/10 to-pink-500/10"
+            />
+          </div>
 
-        {/* Other Projects - Asymmetric Layout */}
-        <div className="space-y-24">
-          {otherProjects.map((project, index) => (
-            <ProjectArticle key={index} project={project} reverse={index % 2 === 1} />
-          ))}
+          {/* Second Project */}
+          <div className="lg:col-span-2">
+            <ProjectCard project={projects[1]} />
+          </div>
+
+          {/* Third Project */}
+          <div className="lg:col-span-1">
+            <ProjectCard project={projects[2]} compact />
+          </div>
         </div>
-
-        {/* Timeline Section */}
-        <section className="mt-32 mb-24">
-          <h2 className="text-4xl font-bold text-foreground mb-16 text-center">
-            Project Timeline
-          </h2>
-          <div className="relative">
-            {/* Timeline Line */}
-            <div className="absolute left-1/2 top-0 bottom-0 w-px bg-border -translate-x-1/2 hidden md:block" />
-            
-            <div className="space-y-12">
-              {projects.map((project, index) => (
-                <div
-                  key={index}
-                  className={`flex items-center gap-8 ${
-                    index % 2 === 0 ? "md:flex-row" : "md:flex-row-reverse"
-                  } flex-col`}
-                >
-                  <Card className={`flex-1 p-6 ${index % 2 === 0 ? "md:text-right" : ""}`}>
-                    <div className="flex items-center gap-3 mb-2">
-                      <Award className="w-5 h-5 text-primary" />
-                      <span className="text-sm font-medium text-primary">{project.date}</span>
-                    </div>
-                    <h3 className="text-xl font-bold text-foreground mb-2">{project.title}</h3>
-                    <p className="text-sm text-muted-foreground">{project.impact}</p>
-                  </Card>
-
-                  {/* Timeline Node */}
-                  <div className="w-12 h-12 rounded-full bg-primary flex items-center justify-center shadow-lg relative z-10 flex-shrink-0">
-                    <Code2 className="w-6 h-6 text-primary-foreground" />
-                  </div>
-
-                  <div className="flex-1 hidden md:block" />
-                </div>
-              ))}
-            </div>
-          </div>
-        </section>
 
         {/* Call to Action */}
-        <Card className="mt-20 p-12 text-center border-primary/20 bg-gradient-to-br from-primary/5 to-transparent">
-          <Sparkles className="w-12 h-12 text-primary mx-auto mb-6" />
-          <h2 className="text-4xl font-bold mb-4 text-foreground">
-            Explore More Projects
+        <Card className="mt-12 p-8 md:p-12 text-center relative overflow-hidden border-primary/20 bg-gradient-to-br from-card/95 to-card/80 backdrop-blur-xl">
+          <div className="absolute inset-0 bg-gradient-to-br from-primary/5 via-transparent to-primary/5 -z-10" />
+          <Sparkles className="w-12 h-12 text-primary mx-auto mb-4 animate-pulse" />
+          <h2 className="text-3xl font-bold mb-4 bg-gradient-to-r from-foreground to-foreground/70 bg-clip-text text-transparent">
+            Want to see more?
           </h2>
-          <p className="text-lg text-muted-foreground mb-8 max-w-2xl mx-auto leading-relaxed">
-            Visit my GitHub profile to discover additional projects, contributions 
-            to open-source communities, and ongoing experiments.
+          <p className="text-muted-foreground mb-6 max-w-2xl mx-auto text-lg">
+            Explore my GitHub for additional projects and open-source contributions
           </p>
           <Button
             size="lg"
-            className="bg-primary hover:bg-primary/90 text-primary-foreground shadow-lg hover:shadow-xl transition-all duration-300"
+            className="bg-primary hover:bg-primary/90 text-primary-foreground shadow-xl hover:shadow-2xl transition-all duration-300 hover:scale-105"
             onClick={() => window.open("https://github.com/prafulpotluri", "_blank")}
           >
             <Github className="w-5 h-5 mr-2" />
@@ -260,92 +153,142 @@ const Projects = () => {
   );
 };
 
-// Project Article Component
-const ProjectArticle = ({ project, reverse }: { project: any; reverse: boolean }) => {
+// Project Card Component with 3D hover effects
+const ProjectCard = ({ 
+  project, 
+  featured = false,
+  compact = false 
+}: { 
+  project: any; 
+  featured?: boolean;
+  compact?: boolean;
+}) => {
+  const [mousePosition, setMousePosition] = useState({ x: 0, y: 0 });
+  const [isHovered, setIsHovered] = useState(false);
+
+  const handleMouseMove = (e: React.MouseEvent<HTMLDivElement>) => {
+    const rect = e.currentTarget.getBoundingClientRect();
+    const x = ((e.clientX - rect.left) / rect.width - 0.5) * 20;
+    const y = ((e.clientY - rect.top) / rect.height - 0.5) * 20;
+    setMousePosition({ x, y });
+  };
+
   return (
-    <article className="animate-fade-in">
-      <div className={`grid lg:grid-cols-5 gap-12 ${reverse ? "lg:grid-flow-dense" : ""}`}>
-        {/* Image Column - Takes 2 columns */}
-        <div className={`lg:col-span-2 space-y-4 ${reverse ? "lg:col-start-4" : ""}`}>
-          <div className="aspect-[4/3] rounded-xl overflow-hidden shadow-lg group">
-            <img
-              src={project.image}
-              alt={project.title}
-              className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105"
-            />
-          </div>
-          <div className="flex items-center gap-3 text-sm text-muted-foreground">
-            <Calendar className="w-4 h-4" />
-            <span>{project.date}</span>
-            <div className="w-1 h-1 rounded-full bg-muted-foreground" />
-            <span className="px-3 py-1 bg-muted text-foreground rounded-full font-medium text-xs">
-              {project.category}
-            </span>
-          </div>
+    <div
+      className="group relative h-full animate-fade-in"
+      onMouseMove={handleMouseMove}
+      onMouseEnter={() => setIsHovered(true)}
+      onMouseLeave={() => {
+        setIsHovered(false);
+        setMousePosition({ x: 0, y: 0 });
+      }}
+      style={{
+        transform: isHovered 
+          ? `perspective(1000px) rotateY(${mousePosition.x * 0.5}deg) rotateX(${-mousePosition.y * 0.5}deg) scale(1.02)`
+          : 'perspective(1000px) rotateY(0deg) rotateX(0deg) scale(1)',
+        transition: 'transform 0.3s ease-out',
+      }}
+    >
+      {/* Glow Effect */}
+      <div className={`absolute -inset-1 bg-gradient-to-r ${project.gradient} rounded-3xl opacity-0 group-hover:opacity-70 blur-2xl transition-opacity duration-500 -z-10`} />
+      
+      {/* Glass Card */}
+      <Card className={`relative h-full overflow-hidden border-border/50 bg-card/80 backdrop-blur-xl shadow-2xl hover:shadow-[0_20px_50px_rgba(0,0,0,0.3)] transition-all duration-500 ${featured ? 'min-h-[600px]' : compact ? 'min-h-[400px]' : 'min-h-[450px]'}`}>
+        {/* Image Section */}
+        <div className={`relative overflow-hidden ${featured ? 'h-80' : compact ? 'h-48' : 'h-64'}`}>
+          <div className="absolute inset-0 bg-gradient-to-t from-card via-card/50 to-transparent z-10" />
+          <img
+            src={project.image}
+            alt={project.title}
+            className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110"
+          />
+          {featured && (
+            <div className="absolute top-4 right-4 px-4 py-2 bg-primary/90 backdrop-blur-sm text-primary-foreground rounded-full text-sm font-semibold shadow-lg z-20 animate-fade-in">
+              ⭐ Featured
+            </div>
+          )}
         </div>
 
-        {/* Content Column - Takes 3 columns */}
-        <div className={`lg:col-span-3 space-y-6 ${reverse ? "lg:col-start-1 lg:row-start-1" : ""}`}>
-          <h2 className="text-3xl md:text-4xl font-bold text-foreground leading-tight">
+        {/* Content */}
+        <div className={`p-6 ${featured ? 'space-y-4' : compact ? 'space-y-3' : 'space-y-4'}`}>
+          <h3 className={`font-bold text-foreground group-hover:text-primary transition-colors duration-300 ${featured ? 'text-3xl' : compact ? 'text-xl' : 'text-2xl'}`}>
             {project.title}
-          </h2>
-
-          <p className="text-lg text-muted-foreground leading-relaxed">
-            {project.description}
-          </p>
-
-          {/* Pull Quote */}
-          <blockquote className="border-l-4 border-primary pl-6 py-2 my-6">
-            <p className="text-xl font-medium text-foreground italic">
-              "{project.pullQuote}"
+          </h3>
+          
+          {!compact && (
+            <p className={`text-muted-foreground leading-relaxed ${featured ? 'text-base' : 'text-sm'}`}>
+              {project.description}
             </p>
-          </blockquote>
+          )}
 
-          {/* Highlights */}
-          <div>
-            <h3 className="text-sm font-bold uppercase tracking-wide text-foreground mb-4">
-              Key Achievements
-            </h3>
-            <ul className="space-y-3">
-              {project.highlights.map((highlight: string, idx: number) => (
-                <li key={idx} className="flex items-start gap-3">
-                  <div className="w-1.5 h-1.5 rounded-full bg-primary mt-2.5 flex-shrink-0" />
-                  <span className="text-muted-foreground leading-relaxed">{highlight}</span>
-                </li>
-              ))}
-            </ul>
+          {/* Stats Pills */}
+          <div className="flex flex-wrap gap-2">
+            {Object.entries(project.stats).map(([key, value]) => (
+              <span
+                key={key}
+                className="px-3 py-1 bg-primary/10 text-primary text-xs font-medium rounded-full border border-primary/20 backdrop-blur-sm"
+              >
+                {value as string}
+              </span>
+            ))}
           </div>
 
           {/* Technologies */}
-          <div>
-            <h3 className="text-sm font-bold uppercase tracking-wide text-foreground mb-4">
-              Technologies
-            </h3>
-            <div className="flex flex-wrap gap-2">
-              {project.technologies.map((tech: string, idx: number) => (
-                <span
-                  key={idx}
-                  className="px-3 py-1.5 bg-muted text-foreground text-sm rounded-md hover:bg-primary hover:text-primary-foreground transition-all duration-300"
-                >
-                  {tech}
-                </span>
-              ))}
-            </div>
+          <div className="flex flex-wrap gap-2">
+            {project.technologies.slice(0, compact ? 3 : undefined).map((tech: string, idx: number) => (
+              <span
+                key={idx}
+                className="px-3 py-1 bg-muted/50 text-muted-foreground text-xs rounded-md hover:bg-primary hover:text-primary-foreground transition-all duration-300 cursor-default"
+              >
+                {tech}
+              </span>
+            ))}
           </div>
 
+          {/* Action Button */}
           <Button
             variant="outline"
-            size="lg"
-            className="border-primary/30 hover:bg-primary hover:text-primary-foreground"
+            size={compact ? "sm" : "default"}
+            className="w-full group/btn border-primary/20 hover:bg-primary hover:text-primary-foreground transition-all duration-300"
             onClick={() => window.open("https://github.com/prafulpotluri", "_blank")}
           >
-            <Github className="w-5 h-5 mr-2" />
+            <Github className="w-4 h-4 mr-2 group-hover/btn:rotate-12 transition-transform" />
             View Project
-            <ExternalLink className="w-4 h-4 ml-2" />
+            <ExternalLink className="w-4 h-4 ml-2 group-hover/btn:translate-x-1 transition-transform" />
           </Button>
         </div>
+      </Card>
+    </div>
+  );
+};
+
+// Stats Card Component
+const StatsCard = ({ 
+  icon, 
+  title, 
+  value, 
+  description,
+  gradient 
+}: { 
+  icon: React.ReactNode; 
+  title: string; 
+  value: string; 
+  description: string;
+  gradient: string;
+}) => {
+  return (
+    <Card className={`p-6 border-border/50 bg-gradient-to-br ${gradient} backdrop-blur-xl hover:scale-105 transition-all duration-300 cursor-default group`}>
+      <div className="flex items-start gap-4">
+        <div className="p-3 bg-primary/10 rounded-xl text-primary group-hover:scale-110 transition-transform duration-300">
+          {icon}
+        </div>
+        <div className="flex-1">
+          <p className="text-xs text-muted-foreground uppercase tracking-wide mb-1">{title}</p>
+          <p className="text-3xl font-bold text-foreground mb-1">{value}</p>
+          <p className="text-xs text-muted-foreground">{description}</p>
+        </div>
       </div>
-    </article>
+    </Card>
   );
 };
 
