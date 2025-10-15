@@ -15,9 +15,7 @@ const Navigation = () => {
     <nav className="fixed top-0 left-0 right-0 z-50 bg-white/95 backdrop-blur-md border-b border-border shadow-sm">
       <div className="container mx-auto px-6 py-4">
         <div className="flex items-center justify-between">
-          <NavLink to="/" className="text-xl font-bold text-foreground hover:text-primary transition-colors">
-            Praful Chand Potluri
-          </NavLink>
+          <div className="w-8"></div>
           
           <div className="hidden md:flex items-center space-x-6">
             {navLinks.map((link) => (
