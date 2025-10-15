@@ -1,15 +1,15 @@
-import { useState, useEffect } from "react";
-import { ExternalLink, Github, Sparkles, ChevronLeft, ChevronRight, RotateCw } from "lucide-react";
+import { useState } from "react";
+import { ExternalLink, Github, Sparkles, Calendar, Award, Code2 } from "lucide-react";
 import { Button } from "@/components/ui/button";
+import { Card } from "@/components/ui/card";
 import blackjackImg from "@/assets/project-blackjack.jpg";
 import ecommerceImg from "@/assets/project-ecommerce.jpg";
 import careerImg from "@/assets/project-career.jpg";
 
 const Projects = () => {
-  const [currentIndex, setCurrentIndex] = useState(0);
-  const [flippedCards, setFlippedCards] = useState<Set<number>>(new Set());
-  const [touchStart, setTouchStart] = useState(0);
-  const [touchEnd, setTouchEnd] = useState(0);
+  const [activeCategory, setActiveCategory] = useState("All");
+
+  const categories = ["All", "Machine Learning", "Data Science", "Web Development"];
 
   const projects = [
     {
@@ -22,8 +22,11 @@ const Projects = () => {
         "Combined rule-based logic (MDP) and learning-based models (DQN) for 25% more optimal suggestions",
         "Designed user-friendly interface with dynamic card displays and real-time score updates",
       ],
-      gradient: "from-blue-500 via-purple-500 to-pink-500",
-      color: "bg-blue-500",
+      pullQuote: "30% boost in decision accuracy through AI-powered strategy tips",
+      date: "2024",
+      category: "Machine Learning",
+      impact: "Enhanced gameplay experience for multi-player environments",
+      featured: true,
     },
     {
       title: "E-commerce Recommendation System",
@@ -35,8 +38,11 @@ const Projects = () => {
         "Processed and analyzed large-scale e-commerce data",
         "Delivered personalized recommendations to enhance user experience",
       ],
-      gradient: "from-emerald-500 via-cyan-500 to-teal-500",
-      color: "bg-emerald-500",
+      pullQuote: "Revolutionizing product discovery through intelligent recommendations",
+      date: "2024",
+      category: "Data Science",
+      impact: "Improved user engagement and product discoverability",
+      featured: false,
     },
     {
       title: "Career Advancement Prediction App",
@@ -48,268 +54,262 @@ const Projects = () => {
         "Applied Random Forest algorithms for prediction accuracy",
         "Created intuitive visualizations for complex career data",
       ],
-      gradient: "from-orange-500 via-pink-500 to-rose-500",
-      color: "bg-orange-500",
+      pullQuote: "Empowering career decisions with data-driven insights",
+      date: "2023",
+      category: "Data Science",
+      impact: "Helping professionals navigate career advancement opportunities",
+      featured: false,
     },
   ];
 
-  const handleNext = () => {
-    setCurrentIndex((prev) => (prev + 1) % projects.length);
-    setFlippedCards(new Set());
-  };
+  const filteredProjects = activeCategory === "All" 
+    ? projects 
+    : projects.filter(p => p.category === activeCategory);
 
-  const handlePrev = () => {
-    setCurrentIndex((prev) => (prev - 1 + projects.length) % projects.length);
-    setFlippedCards(new Set());
-  };
-
-  const toggleFlip = (index: number) => {
-    const newFlipped = new Set(flippedCards);
-    if (newFlipped.has(index)) {
-      newFlipped.delete(index);
-    } else {
-      newFlipped.add(index);
-    }
-    setFlippedCards(newFlipped);
-  };
-
-  // Touch handlers for swipe gestures
-  const handleTouchStart = (e: React.TouchEvent) => {
-    setTouchStart(e.targetTouches[0].clientX);
-  };
-
-  const handleTouchMove = (e: React.TouchEvent) => {
-    setTouchEnd(e.targetTouches[0].clientX);
-  };
-
-  const handleTouchEnd = () => {
-    if (touchStart - touchEnd > 75) {
-      handleNext();
-    }
-    if (touchStart - touchEnd < -75) {
-      handlePrev();
-    }
-  };
-
-  // Keyboard navigation
-  useEffect(() => {
-    const handleKeyDown = (e: KeyboardEvent) => {
-      if (e.key === "ArrowLeft") handlePrev();
-      if (e.key === "ArrowRight") handleNext();
-    };
-    window.addEventListener("keydown", handleKeyDown);
-    return () => window.removeEventListener("keydown", handleKeyDown);
-  }, []);
+  const featuredProject = projects[0];
+  const otherProjects = filteredProjects.slice(1);
 
   return (
-    <div className="min-h-screen pt-24 pb-16 relative overflow-hidden bg-gradient-to-br from-background via-surface to-surface-alt">
-      {/* Animated Background */}
-      <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_center,_var(--tw-gradient-stops))] from-primary/10 via-transparent to-transparent -z-10" />
-      
+    <div className="min-h-screen pt-24 pb-20 bg-background">
       <div className="container mx-auto px-6 max-w-7xl">
-        {/* Header */}
-        <div className="mb-12 animate-fade-in text-center">
-          <div className="flex items-center justify-center gap-3 mb-4">
-            <Sparkles className="w-8 h-8 text-primary animate-pulse" />
-            <h1 className="text-5xl md:text-6xl font-bold bg-gradient-to-r from-foreground via-primary to-foreground bg-clip-text text-transparent">
-              Featured Projects
-            </h1>
+        {/* Header Section */}
+        <header className="mb-16 animate-fade-in">
+          <div className="flex items-center gap-3 mb-6">
+            <div className="w-1 h-12 bg-primary rounded-full" />
+            <div>
+              <p className="text-sm uppercase tracking-widest text-muted-foreground font-medium mb-1">
+                Portfolio
+              </p>
+              <h1 className="text-6xl md:text-7xl font-bold text-foreground leading-tight">
+                Featured<br />Projects
+              </h1>
+            </div>
           </div>
-          <div className="h-1 w-32 bg-gradient-to-r from-transparent via-primary to-transparent rounded-full mx-auto mb-6" />
-          <p className="text-lg text-muted-foreground max-w-2xl mx-auto leading-relaxed mb-4">
-            Interactive card deck - Click to flip and explore details
+          <p className="text-xl text-muted-foreground max-w-2xl leading-relaxed ml-7">
+            A curated collection of data science and machine learning solutions 
+            that solve real-world challenges through innovative approaches.
           </p>
-          <p className="text-sm text-muted-foreground flex items-center justify-center gap-2">
-            <RotateCw className="w-4 h-4" />
-            Use arrow keys or swipe to navigate
-          </p>
-        </div>
+        </header>
 
-        {/* Card Deck Container */}
-        <div 
-          className="relative h-[600px] md:h-[700px] flex items-center justify-center perspective-1000"
-          onTouchStart={handleTouchStart}
-          onTouchMove={handleTouchMove}
-          onTouchEnd={handleTouchEnd}
-        >
-          {projects.map((project, index) => {
-            const offset = index - currentIndex;
-            const isFlipped = flippedCards.has(index);
-            const isCurrent = index === currentIndex;
-            
-            return (
-              <div
-                key={index}
-                className="absolute w-full max-w-2xl transition-all duration-700 ease-out cursor-pointer"
-                style={{
-                  transform: `
-                    translateX(${offset * 30}px) 
-                    translateY(${Math.abs(offset) * 20}px)
-                    translateZ(${-Math.abs(offset) * 100}px)
-                    rotateY(${isFlipped ? 180 : 0}deg)
-                    rotateZ(${offset * 3}deg)
-                    scale(${isCurrent ? 1 : 0.9 - Math.abs(offset) * 0.1})
-                  `,
-                  zIndex: 10 - Math.abs(offset),
-                  opacity: Math.abs(offset) > 2 ? 0 : 1 - Math.abs(offset) * 0.2,
-                  pointerEvents: isCurrent ? 'auto' : 'none',
-                  transformStyle: 'preserve-3d',
-                }}
-                onClick={() => isCurrent && toggleFlip(index)}
-              >
-                <CardDeck project={project} isFlipped={isFlipped} />
-              </div>
-            );
-          })}
-        </div>
-
-        {/* Navigation Controls */}
-        <div className="flex items-center justify-center gap-6 mt-8">
-          <Button
-            variant="outline"
-            size="lg"
-            onClick={handlePrev}
-            className="rounded-full w-14 h-14 p-0 border-primary/30 hover:bg-primary hover:text-primary-foreground transition-all duration-300 hover:scale-110"
-          >
-            <ChevronLeft className="w-6 h-6" />
-          </Button>
-
-          {/* Progress Indicator */}
-          <div className="flex gap-2">
-            {projects.map((_, index) => (
+        {/* Category Filter Tabs */}
+        <div className="mb-16 border-b border-border">
+          <div className="flex gap-8 overflow-x-auto pb-px">
+            {categories.map((category) => (
               <button
-                key={index}
-                onClick={() => {
-                  setCurrentIndex(index);
-                  setFlippedCards(new Set());
-                }}
-                className={`h-2 rounded-full transition-all duration-300 ${
-                  index === currentIndex 
-                    ? 'w-12 bg-primary' 
-                    : 'w-2 bg-muted-foreground/30 hover:bg-muted-foreground/50'
+                key={category}
+                onClick={() => setActiveCategory(category)}
+                className={`pb-4 px-1 text-sm font-medium whitespace-nowrap transition-all duration-300 relative ${
+                  activeCategory === category
+                    ? "text-foreground"
+                    : "text-muted-foreground hover:text-foreground"
                 }`}
-              />
+              >
+                {category}
+                {activeCategory === category && (
+                  <div className="absolute bottom-0 left-0 right-0 h-0.5 bg-primary animate-fade-in" />
+                )}
+              </button>
             ))}
           </div>
-
-          <Button
-            variant="outline"
-            size="lg"
-            onClick={handleNext}
-            className="rounded-full w-14 h-14 p-0 border-primary/30 hover:bg-primary hover:text-primary-foreground transition-all duration-300 hover:scale-110"
-          >
-            <ChevronRight className="w-6 h-6" />
-          </Button>
         </div>
 
-        {/* Instruction Text */}
-        <p className="text-center text-sm text-muted-foreground mt-6">
-          {currentIndex + 1} of {projects.length} projects
-        </p>
+        {/* Hero Featured Project */}
+        <article className="mb-24 animate-fade-in">
+          <div className="grid lg:grid-cols-2 gap-12 items-center">
+            {/* Image */}
+            <div className="relative group order-2 lg:order-1">
+              <div className="aspect-[4/3] rounded-2xl overflow-hidden shadow-2xl">
+                <img
+                  src={featuredProject.image}
+                  alt={featuredProject.title}
+                  className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105"
+                />
+              </div>
+              <div className="absolute -bottom-6 -right-6 bg-primary text-primary-foreground px-6 py-3 rounded-xl shadow-xl">
+                <p className="text-sm font-medium uppercase tracking-wide">Featured Project</p>
+              </div>
+            </div>
+
+            {/* Content */}
+            <div className="order-1 lg:order-2 space-y-6">
+              <div className="flex items-center gap-4 text-sm text-muted-foreground">
+                <div className="flex items-center gap-2">
+                  <Calendar className="w-4 h-4" />
+                  <span>{featuredProject.date}</span>
+                </div>
+                <div className="w-1 h-1 rounded-full bg-muted-foreground" />
+                <span className="px-3 py-1 bg-primary/10 text-primary rounded-full font-medium">
+                  {featuredProject.category}
+                </span>
+              </div>
+
+              <h2 className="text-4xl md:text-5xl font-bold text-foreground leading-tight">
+                {featuredProject.title}
+              </h2>
+
+              {/* Pull Quote */}
+              <blockquote className="border-l-4 border-primary pl-6 py-2 my-8">
+                <p className="text-2xl font-medium text-foreground italic leading-relaxed">
+                  "{featuredProject.pullQuote}"
+                </p>
+              </blockquote>
+
+              <p className="text-lg text-muted-foreground leading-relaxed">
+                {featuredProject.description}
+              </p>
+
+              <div className="pt-4">
+                <h3 className="text-sm font-bold uppercase tracking-wide text-foreground mb-4">
+                  Key Technologies
+                </h3>
+                <div className="flex flex-wrap gap-2">
+                  {featuredProject.technologies.map((tech, idx) => (
+                    <span
+                      key={idx}
+                      className="px-4 py-2 bg-muted text-foreground text-sm font-medium rounded-lg hover:bg-primary hover:text-primary-foreground transition-all duration-300"
+                    >
+                      {tech}
+                    </span>
+                  ))}
+                </div>
+              </div>
+
+              <Button
+                size="lg"
+                className="bg-primary hover:bg-primary/90 text-primary-foreground mt-6"
+                onClick={() => window.open("https://github.com/prafulpotluri", "_blank")}
+              >
+                <Github className="w-5 h-5 mr-2" />
+                View Project
+                <ExternalLink className="w-4 h-4 ml-2" />
+              </Button>
+            </div>
+          </div>
+        </article>
+
+        {/* Divider */}
+        <div className="h-px bg-gradient-to-r from-transparent via-border to-transparent mb-24" />
+
+        {/* Other Projects - Asymmetric Layout */}
+        <div className="space-y-24">
+          {otherProjects.map((project, index) => (
+            <ProjectArticle key={index} project={project} reverse={index % 2 === 1} />
+          ))}
+        </div>
+
+        {/* Timeline Section */}
+        <section className="mt-32 mb-24">
+          <h2 className="text-4xl font-bold text-foreground mb-16 text-center">
+            Project Timeline
+          </h2>
+          <div className="relative">
+            {/* Timeline Line */}
+            <div className="absolute left-1/2 top-0 bottom-0 w-px bg-border -translate-x-1/2 hidden md:block" />
+            
+            <div className="space-y-12">
+              {projects.map((project, index) => (
+                <div
+                  key={index}
+                  className={`flex items-center gap-8 ${
+                    index % 2 === 0 ? "md:flex-row" : "md:flex-row-reverse"
+                  } flex-col`}
+                >
+                  <Card className={`flex-1 p-6 ${index % 2 === 0 ? "md:text-right" : ""}`}>
+                    <div className="flex items-center gap-3 mb-2">
+                      <Award className="w-5 h-5 text-primary" />
+                      <span className="text-sm font-medium text-primary">{project.date}</span>
+                    </div>
+                    <h3 className="text-xl font-bold text-foreground mb-2">{project.title}</h3>
+                    <p className="text-sm text-muted-foreground">{project.impact}</p>
+                  </Card>
+
+                  {/* Timeline Node */}
+                  <div className="w-12 h-12 rounded-full bg-primary flex items-center justify-center shadow-lg relative z-10 flex-shrink-0">
+                    <Code2 className="w-6 h-6 text-primary-foreground" />
+                  </div>
+
+                  <div className="flex-1 hidden md:block" />
+                </div>
+              ))}
+            </div>
+          </div>
+        </section>
 
         {/* Call to Action */}
-        <div className="mt-16 text-center p-8 md:p-12 bg-card/50 backdrop-blur-xl rounded-3xl border border-border/50 shadow-2xl">
-          <Sparkles className="w-12 h-12 text-primary mx-auto mb-4 animate-pulse" />
-          <h2 className="text-3xl font-bold mb-4 bg-gradient-to-r from-foreground to-foreground/70 bg-clip-text text-transparent">
-            Want to see more?
+        <Card className="mt-20 p-12 text-center border-primary/20 bg-gradient-to-br from-primary/5 to-transparent">
+          <Sparkles className="w-12 h-12 text-primary mx-auto mb-6" />
+          <h2 className="text-4xl font-bold mb-4 text-foreground">
+            Explore More Projects
           </h2>
-          <p className="text-muted-foreground mb-6 max-w-2xl mx-auto text-lg">
-            Explore my GitHub for additional projects and open-source contributions
+          <p className="text-lg text-muted-foreground mb-8 max-w-2xl mx-auto leading-relaxed">
+            Visit my GitHub profile to discover additional projects, contributions 
+            to open-source communities, and ongoing experiments.
           </p>
           <Button
             size="lg"
-            className="bg-primary hover:bg-primary/90 text-primary-foreground shadow-xl hover:shadow-2xl transition-all duration-300 hover:scale-105"
+            className="bg-primary hover:bg-primary/90 text-primary-foreground shadow-lg hover:shadow-xl transition-all duration-300"
             onClick={() => window.open("https://github.com/prafulpotluri", "_blank")}
           >
             <Github className="w-5 h-5 mr-2" />
             Visit GitHub Profile
             <ExternalLink className="w-4 h-4 ml-2" />
           </Button>
-        </div>
+        </Card>
       </div>
     </div>
   );
 };
 
-// Card Deck Component with Front and Back
-const CardDeck = ({ project, isFlipped }: { project: any; isFlipped: boolean }) => {
+// Project Article Component
+const ProjectArticle = ({ project, reverse }: { project: any; reverse: boolean }) => {
   return (
-    <div className="relative w-full h-[550px] md:h-[650px]" style={{ transformStyle: 'preserve-3d' }}>
-      {/* Front Side - Image with Title Overlay */}
-      <div
-        className="absolute inset-0 backface-hidden rounded-3xl overflow-hidden shadow-2xl"
-        style={{
-          backfaceVisibility: 'hidden',
-          transform: 'rotateY(0deg)',
-        }}
-      >
-        <div className="relative w-full h-full group">
-          {/* Gradient Overlay */}
-          <div className={`absolute inset-0 bg-gradient-to-br ${project.gradient} opacity-20 group-hover:opacity-30 transition-opacity duration-500`} />
-          
-          {/* Image */}
-          <img
-            src={project.image}
-            alt={project.title}
-            className="w-full h-full object-cover"
-          />
-          
-          {/* Dark Gradient for Text Readability */}
-          <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/40 to-transparent" />
-          
-          {/* Title Overlay */}
-          <div className="absolute bottom-0 left-0 right-0 p-8 md:p-12">
-            <h2 className="text-3xl md:text-4xl font-bold text-white mb-4 drop-shadow-lg">
-              {project.title}
-            </h2>
-            <p className="text-white/90 text-lg mb-6 drop-shadow-md">
-              {project.description}
-            </p>
-            <div className="flex items-center gap-3 text-white/80 text-sm">
-              <RotateCw className="w-5 h-5 animate-spin-slow" />
-              <span>Click to flip for details</span>
-            </div>
+    <article className="animate-fade-in">
+      <div className={`grid lg:grid-cols-5 gap-12 ${reverse ? "lg:grid-flow-dense" : ""}`}>
+        {/* Image Column - Takes 2 columns */}
+        <div className={`lg:col-span-2 space-y-4 ${reverse ? "lg:col-start-4" : ""}`}>
+          <div className="aspect-[4/3] rounded-xl overflow-hidden shadow-lg group">
+            <img
+              src={project.image}
+              alt={project.title}
+              className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105"
+            />
           </div>
-
-          {/* Flip Icon Hint */}
-          <div className="absolute top-8 right-8 bg-white/10 backdrop-blur-md rounded-full p-3 border border-white/20">
-            <RotateCw className="w-6 h-6 text-white" />
+          <div className="flex items-center gap-3 text-sm text-muted-foreground">
+            <Calendar className="w-4 h-4" />
+            <span>{project.date}</span>
+            <div className="w-1 h-1 rounded-full bg-muted-foreground" />
+            <span className="px-3 py-1 bg-muted text-foreground rounded-full font-medium text-xs">
+              {project.category}
+            </span>
           </div>
         </div>
-      </div>
 
-      {/* Back Side - Full Details */}
-      <div
-        className="absolute inset-0 backface-hidden rounded-3xl overflow-hidden shadow-2xl bg-card border border-border"
-        style={{
-          backfaceVisibility: 'hidden',
-          transform: 'rotateY(180deg)',
-        }}
-      >
-        <div className="h-full overflow-y-auto p-8 md:p-12 space-y-6">
-          {/* Header */}
-          <div>
-            <div className={`inline-block px-4 py-2 ${project.color} text-white rounded-full text-sm font-semibold mb-4`}>
-              Featured Project
-            </div>
-            <h2 className="text-3xl md:text-4xl font-bold text-foreground mb-4">
-              {project.title}
-            </h2>
-            <p className="text-muted-foreground text-lg leading-relaxed">
-              {project.description}
+        {/* Content Column - Takes 3 columns */}
+        <div className={`lg:col-span-3 space-y-6 ${reverse ? "lg:col-start-1 lg:row-start-1" : ""}`}>
+          <h2 className="text-3xl md:text-4xl font-bold text-foreground leading-tight">
+            {project.title}
+          </h2>
+
+          <p className="text-lg text-muted-foreground leading-relaxed">
+            {project.description}
+          </p>
+
+          {/* Pull Quote */}
+          <blockquote className="border-l-4 border-primary pl-6 py-2 my-6">
+            <p className="text-xl font-medium text-foreground italic">
+              "{project.pullQuote}"
             </p>
-          </div>
+          </blockquote>
 
-          {/* Key Achievements */}
+          {/* Highlights */}
           <div>
-            <h3 className="text-lg font-bold text-foreground mb-4 flex items-center gap-2">
-              <div className="w-1 h-6 bg-primary rounded-full" />
+            <h3 className="text-sm font-bold uppercase tracking-wide text-foreground mb-4">
               Key Achievements
             </h3>
             <ul className="space-y-3">
               {project.highlights.map((highlight: string, idx: number) => (
                 <li key={idx} className="flex items-start gap-3">
-                  <div className="w-2 h-2 rounded-full bg-primary mt-2 flex-shrink-0" />
+                  <div className="w-1.5 h-1.5 rounded-full bg-primary mt-2.5 flex-shrink-0" />
                   <span className="text-muted-foreground leading-relaxed">{highlight}</span>
                 </li>
               ))}
@@ -318,15 +318,14 @@ const CardDeck = ({ project, isFlipped }: { project: any; isFlipped: boolean }) 
 
           {/* Technologies */}
           <div>
-            <h3 className="text-lg font-bold text-foreground mb-4 flex items-center gap-2">
-              <div className="w-1 h-6 bg-primary rounded-full" />
-              Technologies Used
+            <h3 className="text-sm font-bold uppercase tracking-wide text-foreground mb-4">
+              Technologies
             </h3>
             <div className="flex flex-wrap gap-2">
               {project.technologies.map((tech: string, idx: number) => (
                 <span
                   key={idx}
-                  className="px-4 py-2 bg-primary/10 text-primary font-medium rounded-lg border border-primary/20 hover:bg-primary hover:text-primary-foreground transition-all duration-300"
+                  className="px-3 py-1.5 bg-muted text-foreground text-sm rounded-md hover:bg-primary hover:text-primary-foreground transition-all duration-300"
                 >
                   {tech}
                 </span>
@@ -334,27 +333,19 @@ const CardDeck = ({ project, isFlipped }: { project: any; isFlipped: boolean }) 
             </div>
           </div>
 
-          {/* Action Buttons */}
-          <div className="pt-4 space-y-3">
-            <Button
-              className="w-full bg-primary hover:bg-primary/90 text-primary-foreground shadow-lg hover:shadow-xl transition-all duration-300"
-              size="lg"
-              onClick={(e) => {
-                e.stopPropagation();
-                window.open("https://github.com/prafulpotluri", "_blank");
-              }}
-            >
-              <Github className="w-5 h-5 mr-2" />
-              View on GitHub
-              <ExternalLink className="w-4 h-4 ml-2" />
-            </Button>
-            <p className="text-center text-sm text-muted-foreground">
-              Click anywhere to flip back
-            </p>
-          </div>
+          <Button
+            variant="outline"
+            size="lg"
+            className="border-primary/30 hover:bg-primary hover:text-primary-foreground"
+            onClick={() => window.open("https://github.com/prafulpotluri", "_blank")}
+          >
+            <Github className="w-5 h-5 mr-2" />
+            View Project
+            <ExternalLink className="w-4 h-4 ml-2" />
+          </Button>
         </div>
       </div>
-    </div>
+    </article>
   );
 };
 
