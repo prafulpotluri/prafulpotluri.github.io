@@ -1,10 +1,21 @@
+import prafulPhoto from "@/assets/praful-about.jpg";
+
 const About = () => {
   return (
     <div className="min-h-screen pt-24 pb-16 bg-gradient-to-b from-surface-alt to-background">
       <div className="container mx-auto px-6 max-w-6xl">
-        <div className="mb-12 animate-fade-in">
-          <h1 className="text-4xl md:text-5xl font-bold mb-4 text-foreground">About Me</h1>
-          <div className="h-1 w-20 bg-primary rounded-sm"></div>
+        <div className="mb-12 animate-fade-in flex flex-col md:flex-row justify-between items-start md:items-center gap-6">
+          <div>
+            <h1 className="text-4xl md:text-5xl font-bold mb-4 text-foreground">About Me</h1>
+            <div className="h-1 w-20 bg-primary rounded-sm"></div>
+          </div>
+          <div className="flex-shrink-0">
+            <img 
+              src={prafulPhoto} 
+              alt="Praful Bhujbal" 
+              className="w-32 h-32 md:w-40 md:h-40 rounded-2xl object-cover shadow-lg border-2 border-primary/20"
+            />
+          </div>
         </div>
 
         <div className="grid lg:grid-cols-2 gap-12 items-center">
