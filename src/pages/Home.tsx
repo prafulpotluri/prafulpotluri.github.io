@@ -1,6 +1,7 @@
 import { useNavigate } from "react-router-dom";
 import { Button } from "@/components/ui/button";
 import { ArrowRight, Download } from "lucide-react";
+import prafulPhoto from "@/assets/praful-photo.jpg";
 
 const Home = () => {
   const navigate = useNavigate();
@@ -24,7 +25,7 @@ const Home = () => {
         <div className="absolute top-1/2 right-1/3 w-16 h-16 bg-primary/10 rounded-lg rotate-45"></div>
         
         <div className="container mx-auto px-6 relative z-10">
-          <div className="max-w-4xl">
+          <div className="grid lg:grid-cols-2 gap-12 items-center">
             {/* Main content */}
             <div className="animate-fade-in">
               <div className="mb-6">
@@ -59,6 +60,18 @@ const Home = () => {
                   <Download className="mr-2 h-5 w-5" />
                   Download Resume
                 </Button>
+              </div>
+            </div>
+
+            {/* Photo */}
+            <div className="animate-fade-in lg:justify-self-end">
+              <div className="relative">
+                <div className="absolute -inset-4 bg-gradient-to-r from-primary/20 to-sky-blue-light/20 rounded-2xl blur-2xl"></div>
+                <img 
+                  src={prafulPhoto} 
+                  alt="Praful Chand Potluri - Data Analyst"
+                  className="relative rounded-2xl shadow-2xl w-full max-w-md lg:max-w-lg object-cover"
+                />
               </div>
             </div>
           </div>
