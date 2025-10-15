@@ -37,7 +37,7 @@ const About = () => {
                 <div className="h-px bg-border"></div>
                 
                 <div>
-                  <div className="text-3xl font-bold text-primary mb-2">2+</div>
+                  <div className="text-3xl font-bold text-primary mb-2">4+</div>
                   <p className="text-muted-foreground">Years of Experience</p>
                 </div>
                 
