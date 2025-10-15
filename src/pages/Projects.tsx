@@ -1,12 +1,16 @@
-import { useState } from "react";
-import { ExternalLink, Github, Sparkles, Code2, Zap, TrendingUp } from "lucide-react";
+import { useState, useEffect } from "react";
+import { ExternalLink, Github, Sparkles, ChevronLeft, ChevronRight, RotateCw } from "lucide-react";
 import { Button } from "@/components/ui/button";
-import { Card } from "@/components/ui/card";
 import blackjackImg from "@/assets/project-blackjack.jpg";
 import ecommerceImg from "@/assets/project-ecommerce.jpg";
 import careerImg from "@/assets/project-career.jpg";
 
 const Projects = () => {
+  const [currentIndex, setCurrentIndex] = useState(0);
+  const [flippedCards, setFlippedCards] = useState<Set<number>>(new Set());
+  const [touchStart, setTouchStart] = useState(0);
+  const [touchEnd, setTouchEnd] = useState(0);
+
   const projects = [
     {
       title: "Blackjack Game with AI Assist",
@@ -18,13 +22,8 @@ const Projects = () => {
         "Combined rule-based logic (MDP) and learning-based models (DQN) for 25% more optimal suggestions",
         "Designed user-friendly interface with dynamic card displays and real-time score updates",
       ],
-      stats: {
-        accuracy: "30%",
-        optimization: "25%",
-        impact: "Multi-player"
-      },
-      gradient: "from-blue-500/20 via-purple-500/20 to-pink-500/20",
-      featured: true,
+      gradient: "from-blue-500 via-purple-500 to-pink-500",
+      color: "bg-blue-500",
     },
     {
       title: "E-commerce Recommendation System",
@@ -36,13 +35,8 @@ const Projects = () => {
         "Processed and analyzed large-scale e-commerce data",
         "Delivered personalized recommendations to enhance user experience",
       ],
-      stats: {
-        scale: "Large-scale",
-        technique: "ML + CF",
-        focus: "Personalization"
-      },
-      gradient: "from-emerald-500/20 via-cyan-500/20 to-teal-500/20",
-      featured: false,
+      gradient: "from-emerald-500 via-cyan-500 to-teal-500",
+      color: "bg-emerald-500",
     },
     {
       title: "Career Advancement Prediction App",
@@ -54,25 +48,67 @@ const Projects = () => {
         "Applied Random Forest algorithms for prediction accuracy",
         "Created intuitive visualizations for complex career data",
       ],
-      stats: {
-        method: "Agile",
-        accuracy: "High",
-        type: "Interactive"
-      },
-      gradient: "from-orange-500/20 via-pink-500/20 to-rose-500/20",
-      featured: false,
+      gradient: "from-orange-500 via-pink-500 to-rose-500",
+      color: "bg-orange-500",
     },
   ];
 
+  const handleNext = () => {
+    setCurrentIndex((prev) => (prev + 1) % projects.length);
+    setFlippedCards(new Set());
+  };
+
+  const handlePrev = () => {
+    setCurrentIndex((prev) => (prev - 1 + projects.length) % projects.length);
+    setFlippedCards(new Set());
+  };
+
+  const toggleFlip = (index: number) => {
+    const newFlipped = new Set(flippedCards);
+    if (newFlipped.has(index)) {
+      newFlipped.delete(index);
+    } else {
+      newFlipped.add(index);
+    }
+    setFlippedCards(newFlipped);
+  };
+
+  // Touch handlers for swipe gestures
+  const handleTouchStart = (e: React.TouchEvent) => {
+    setTouchStart(e.targetTouches[0].clientX);
+  };
+
+  const handleTouchMove = (e: React.TouchEvent) => {
+    setTouchEnd(e.targetTouches[0].clientX);
+  };
+
+  const handleTouchEnd = () => {
+    if (touchStart - touchEnd > 75) {
+      handleNext();
+    }
+    if (touchStart - touchEnd < -75) {
+      handlePrev();
+    }
+  };
+
+  // Keyboard navigation
+  useEffect(() => {
+    const handleKeyDown = (e: KeyboardEvent) => {
+      if (e.key === "ArrowLeft") handlePrev();
+      if (e.key === "ArrowRight") handleNext();
+    };
+    window.addEventListener("keydown", handleKeyDown);
+    return () => window.removeEventListener("keydown", handleKeyDown);
+  }, []);
+
   return (
-    <div className="min-h-screen pt-24 pb-16 relative overflow-hidden">
+    <div className="min-h-screen pt-24 pb-16 relative overflow-hidden bg-gradient-to-br from-background via-surface to-surface-alt">
       {/* Animated Background */}
-      <div className="absolute inset-0 bg-gradient-to-br from-background via-surface to-surface-alt -z-10" />
-      <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_top_right,_var(--tw-gradient-stops))] from-primary/5 via-transparent to-transparent -z-10" />
+      <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_center,_var(--tw-gradient-stops))] from-primary/10 via-transparent to-transparent -z-10" />
       
       <div className="container mx-auto px-6 max-w-7xl">
         {/* Header */}
-        <div className="mb-16 animate-fade-in text-center">
+        <div className="mb-12 animate-fade-in text-center">
           <div className="flex items-center justify-center gap-3 mb-4">
             <Sparkles className="w-8 h-8 text-primary animate-pulse" />
             <h1 className="text-5xl md:text-6xl font-bold bg-gradient-to-r from-foreground via-primary to-foreground bg-clip-text text-transparent">
@@ -80,57 +116,99 @@ const Projects = () => {
             </h1>
           </div>
           <div className="h-1 w-32 bg-gradient-to-r from-transparent via-primary to-transparent rounded-full mx-auto mb-6" />
-          <p className="text-lg text-muted-foreground max-w-2xl mx-auto leading-relaxed">
-            Innovative solutions powered by data science and machine learning
+          <p className="text-lg text-muted-foreground max-w-2xl mx-auto leading-relaxed mb-4">
+            Interactive card deck - Click to flip and explore details
+          </p>
+          <p className="text-sm text-muted-foreground flex items-center justify-center gap-2">
+            <RotateCw className="w-4 h-4" />
+            Use arrow keys or swipe to navigate
           </p>
         </div>
 
-        {/* Bento Grid Layout */}
-        <div className="grid grid-cols-1 lg:grid-cols-3 gap-6 mb-8">
-          {/* Featured Large Project - Takes 2 columns */}
-          <div className="lg:col-span-2 lg:row-span-2">
-            <ProjectCard project={projects[0]} featured />
-          </div>
-
-          {/* Stats Cards - Vertical stack */}
-          <div className="space-y-6">
-            <StatsCard
-              icon={<Code2 className="w-6 h-6" />}
-              title="Projects Completed"
-              value="10+"
-              description="Machine learning & AI solutions"
-              gradient="from-blue-500/10 to-purple-500/10"
-            />
-            <StatsCard
-              icon={<Zap className="w-6 h-6" />}
-              title="Technologies"
-              value="15+"
-              description="Frameworks & tools mastered"
-              gradient="from-emerald-500/10 to-cyan-500/10"
-            />
-            <StatsCard
-              icon={<TrendingUp className="w-6 h-6" />}
-              title="Impact"
-              value="30%+"
-              description="Average accuracy improvement"
-              gradient="from-orange-500/10 to-pink-500/10"
-            />
-          </div>
-
-          {/* Second Project */}
-          <div className="lg:col-span-2">
-            <ProjectCard project={projects[1]} />
-          </div>
-
-          {/* Third Project */}
-          <div className="lg:col-span-1">
-            <ProjectCard project={projects[2]} compact />
-          </div>
+        {/* Card Deck Container */}
+        <div 
+          className="relative h-[600px] md:h-[700px] flex items-center justify-center perspective-1000"
+          onTouchStart={handleTouchStart}
+          onTouchMove={handleTouchMove}
+          onTouchEnd={handleTouchEnd}
+        >
+          {projects.map((project, index) => {
+            const offset = index - currentIndex;
+            const isFlipped = flippedCards.has(index);
+            const isCurrent = index === currentIndex;
+            
+            return (
+              <div
+                key={index}
+                className="absolute w-full max-w-2xl transition-all duration-700 ease-out cursor-pointer"
+                style={{
+                  transform: `
+                    translateX(${offset * 30}px) 
+                    translateY(${Math.abs(offset) * 20}px)
+                    translateZ(${-Math.abs(offset) * 100}px)
+                    rotateY(${isFlipped ? 180 : 0}deg)
+                    rotateZ(${offset * 3}deg)
+                    scale(${isCurrent ? 1 : 0.9 - Math.abs(offset) * 0.1})
+                  `,
+                  zIndex: 10 - Math.abs(offset),
+                  opacity: Math.abs(offset) > 2 ? 0 : 1 - Math.abs(offset) * 0.2,
+                  pointerEvents: isCurrent ? 'auto' : 'none',
+                  transformStyle: 'preserve-3d',
+                }}
+                onClick={() => isCurrent && toggleFlip(index)}
+              >
+                <CardDeck project={project} isFlipped={isFlipped} />
+              </div>
+            );
+          })}
         </div>
 
+        {/* Navigation Controls */}
+        <div className="flex items-center justify-center gap-6 mt-8">
+          <Button
+            variant="outline"
+            size="lg"
+            onClick={handlePrev}
+            className="rounded-full w-14 h-14 p-0 border-primary/30 hover:bg-primary hover:text-primary-foreground transition-all duration-300 hover:scale-110"
+          >
+            <ChevronLeft className="w-6 h-6" />
+          </Button>
+
+          {/* Progress Indicator */}
+          <div className="flex gap-2">
+            {projects.map((_, index) => (
+              <button
+                key={index}
+                onClick={() => {
+                  setCurrentIndex(index);
+                  setFlippedCards(new Set());
+                }}
+                className={`h-2 rounded-full transition-all duration-300 ${
+                  index === currentIndex 
+                    ? 'w-12 bg-primary' 
+                    : 'w-2 bg-muted-foreground/30 hover:bg-muted-foreground/50'
+                }`}
+              />
+            ))}
+          </div>
+
+          <Button
+            variant="outline"
+            size="lg"
+            onClick={handleNext}
+            className="rounded-full w-14 h-14 p-0 border-primary/30 hover:bg-primary hover:text-primary-foreground transition-all duration-300 hover:scale-110"
+          >
+            <ChevronRight className="w-6 h-6" />
+          </Button>
+        </div>
+
+        {/* Instruction Text */}
+        <p className="text-center text-sm text-muted-foreground mt-6">
+          {currentIndex + 1} of {projects.length} projects
+        </p>
+
         {/* Call to Action */}
-        <Card className="mt-12 p-8 md:p-12 text-center relative overflow-hidden border-primary/20 bg-gradient-to-br from-card/95 to-card/80 backdrop-blur-xl">
-          <div className="absolute inset-0 bg-gradient-to-br from-primary/5 via-transparent to-primary/5 -z-10" />
+        <div className="mt-16 text-center p-8 md:p-12 bg-card/50 backdrop-blur-xl rounded-3xl border border-border/50 shadow-2xl">
           <Sparkles className="w-12 h-12 text-primary mx-auto mb-4 animate-pulse" />
           <h2 className="text-3xl font-bold mb-4 bg-gradient-to-r from-foreground to-foreground/70 bg-clip-text text-transparent">
             Want to see more?
@@ -147,148 +225,136 @@ const Projects = () => {
             Visit GitHub Profile
             <ExternalLink className="w-4 h-4 ml-2" />
           </Button>
-        </Card>
+        </div>
       </div>
     </div>
   );
 };
 
-// Project Card Component with 3D hover effects
-const ProjectCard = ({ 
-  project, 
-  featured = false,
-  compact = false 
-}: { 
-  project: any; 
-  featured?: boolean;
-  compact?: boolean;
-}) => {
-  const [mousePosition, setMousePosition] = useState({ x: 0, y: 0 });
-  const [isHovered, setIsHovered] = useState(false);
-
-  const handleMouseMove = (e: React.MouseEvent<HTMLDivElement>) => {
-    const rect = e.currentTarget.getBoundingClientRect();
-    const x = ((e.clientX - rect.left) / rect.width - 0.5) * 20;
-    const y = ((e.clientY - rect.top) / rect.height - 0.5) * 20;
-    setMousePosition({ x, y });
-  };
-
+// Card Deck Component with Front and Back
+const CardDeck = ({ project, isFlipped }: { project: any; isFlipped: boolean }) => {
   return (
-    <div
-      className="group relative h-full animate-fade-in"
-      onMouseMove={handleMouseMove}
-      onMouseEnter={() => setIsHovered(true)}
-      onMouseLeave={() => {
-        setIsHovered(false);
-        setMousePosition({ x: 0, y: 0 });
-      }}
-      style={{
-        transform: isHovered 
-          ? `perspective(1000px) rotateY(${mousePosition.x * 0.5}deg) rotateX(${-mousePosition.y * 0.5}deg) scale(1.02)`
-          : 'perspective(1000px) rotateY(0deg) rotateX(0deg) scale(1)',
-        transition: 'transform 0.3s ease-out',
-      }}
-    >
-      {/* Glow Effect */}
-      <div className={`absolute -inset-1 bg-gradient-to-r ${project.gradient} rounded-3xl opacity-0 group-hover:opacity-70 blur-2xl transition-opacity duration-500 -z-10`} />
-      
-      {/* Glass Card */}
-      <Card className={`relative h-full overflow-hidden border-border/50 bg-card/80 backdrop-blur-xl shadow-2xl hover:shadow-[0_20px_50px_rgba(0,0,0,0.3)] transition-all duration-500 ${featured ? 'min-h-[600px]' : compact ? 'min-h-[400px]' : 'min-h-[450px]'}`}>
-        {/* Image Section */}
-        <div className={`relative overflow-hidden ${featured ? 'h-80' : compact ? 'h-48' : 'h-64'}`}>
-          <div className="absolute inset-0 bg-gradient-to-t from-card via-card/50 to-transparent z-10" />
+    <div className="relative w-full h-[550px] md:h-[650px]" style={{ transformStyle: 'preserve-3d' }}>
+      {/* Front Side - Image with Title Overlay */}
+      <div
+        className="absolute inset-0 backface-hidden rounded-3xl overflow-hidden shadow-2xl"
+        style={{
+          backfaceVisibility: 'hidden',
+          transform: 'rotateY(0deg)',
+        }}
+      >
+        <div className="relative w-full h-full group">
+          {/* Gradient Overlay */}
+          <div className={`absolute inset-0 bg-gradient-to-br ${project.gradient} opacity-20 group-hover:opacity-30 transition-opacity duration-500`} />
+          
+          {/* Image */}
           <img
             src={project.image}
             alt={project.title}
-            className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110"
+            className="w-full h-full object-cover"
           />
-          {featured && (
-            <div className="absolute top-4 right-4 px-4 py-2 bg-primary/90 backdrop-blur-sm text-primary-foreground rounded-full text-sm font-semibold shadow-lg z-20 animate-fade-in">
-              ⭐ Featured
-            </div>
-          )}
-        </div>
-
-        {/* Content */}
-        <div className={`p-6 ${featured ? 'space-y-4' : compact ? 'space-y-3' : 'space-y-4'}`}>
-          <h3 className={`font-bold text-foreground group-hover:text-primary transition-colors duration-300 ${featured ? 'text-3xl' : compact ? 'text-xl' : 'text-2xl'}`}>
-            {project.title}
-          </h3>
           
-          {!compact && (
-            <p className={`text-muted-foreground leading-relaxed ${featured ? 'text-base' : 'text-sm'}`}>
+          {/* Dark Gradient for Text Readability */}
+          <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/40 to-transparent" />
+          
+          {/* Title Overlay */}
+          <div className="absolute bottom-0 left-0 right-0 p-8 md:p-12">
+            <h2 className="text-3xl md:text-4xl font-bold text-white mb-4 drop-shadow-lg">
+              {project.title}
+            </h2>
+            <p className="text-white/90 text-lg mb-6 drop-shadow-md">
               {project.description}
             </p>
-          )}
+            <div className="flex items-center gap-3 text-white/80 text-sm">
+              <RotateCw className="w-5 h-5 animate-spin-slow" />
+              <span>Click to flip for details</span>
+            </div>
+          </div>
 
-          {/* Stats Pills */}
-          <div className="flex flex-wrap gap-2">
-            {Object.entries(project.stats).map(([key, value]) => (
-              <span
-                key={key}
-                className="px-3 py-1 bg-primary/10 text-primary text-xs font-medium rounded-full border border-primary/20 backdrop-blur-sm"
-              >
-                {value as string}
-              </span>
-            ))}
+          {/* Flip Icon Hint */}
+          <div className="absolute top-8 right-8 bg-white/10 backdrop-blur-md rounded-full p-3 border border-white/20">
+            <RotateCw className="w-6 h-6 text-white" />
+          </div>
+        </div>
+      </div>
+
+      {/* Back Side - Full Details */}
+      <div
+        className="absolute inset-0 backface-hidden rounded-3xl overflow-hidden shadow-2xl bg-card border border-border"
+        style={{
+          backfaceVisibility: 'hidden',
+          transform: 'rotateY(180deg)',
+        }}
+      >
+        <div className="h-full overflow-y-auto p-8 md:p-12 space-y-6">
+          {/* Header */}
+          <div>
+            <div className={`inline-block px-4 py-2 ${project.color} text-white rounded-full text-sm font-semibold mb-4`}>
+              Featured Project
+            </div>
+            <h2 className="text-3xl md:text-4xl font-bold text-foreground mb-4">
+              {project.title}
+            </h2>
+            <p className="text-muted-foreground text-lg leading-relaxed">
+              {project.description}
+            </p>
+          </div>
+
+          {/* Key Achievements */}
+          <div>
+            <h3 className="text-lg font-bold text-foreground mb-4 flex items-center gap-2">
+              <div className="w-1 h-6 bg-primary rounded-full" />
+              Key Achievements
+            </h3>
+            <ul className="space-y-3">
+              {project.highlights.map((highlight: string, idx: number) => (
+                <li key={idx} className="flex items-start gap-3">
+                  <div className="w-2 h-2 rounded-full bg-primary mt-2 flex-shrink-0" />
+                  <span className="text-muted-foreground leading-relaxed">{highlight}</span>
+                </li>
+              ))}
+            </ul>
           </div>
 
           {/* Technologies */}
-          <div className="flex flex-wrap gap-2">
-            {project.technologies.slice(0, compact ? 3 : undefined).map((tech: string, idx: number) => (
-              <span
-                key={idx}
-                className="px-3 py-1 bg-muted/50 text-muted-foreground text-xs rounded-md hover:bg-primary hover:text-primary-foreground transition-all duration-300 cursor-default"
-              >
-                {tech}
-              </span>
-            ))}
+          <div>
+            <h3 className="text-lg font-bold text-foreground mb-4 flex items-center gap-2">
+              <div className="w-1 h-6 bg-primary rounded-full" />
+              Technologies Used
+            </h3>
+            <div className="flex flex-wrap gap-2">
+              {project.technologies.map((tech: string, idx: number) => (
+                <span
+                  key={idx}
+                  className="px-4 py-2 bg-primary/10 text-primary font-medium rounded-lg border border-primary/20 hover:bg-primary hover:text-primary-foreground transition-all duration-300"
+                >
+                  {tech}
+                </span>
+              ))}
+            </div>
           </div>
 
-          {/* Action Button */}
-          <Button
-            variant="outline"
-            size={compact ? "sm" : "default"}
-            className="w-full group/btn border-primary/20 hover:bg-primary hover:text-primary-foreground transition-all duration-300"
-            onClick={() => window.open("https://github.com/prafulpotluri", "_blank")}
-          >
-            <Github className="w-4 h-4 mr-2 group-hover/btn:rotate-12 transition-transform" />
-            View Project
-            <ExternalLink className="w-4 h-4 ml-2 group-hover/btn:translate-x-1 transition-transform" />
-          </Button>
-        </div>
-      </Card>
-    </div>
-  );
-};
-
-// Stats Card Component
-const StatsCard = ({ 
-  icon, 
-  title, 
-  value, 
-  description,
-  gradient 
-}: { 
-  icon: React.ReactNode; 
-  title: string; 
-  value: string; 
-  description: string;
-  gradient: string;
-}) => {
-  return (
-    <Card className={`p-6 border-border/50 bg-gradient-to-br ${gradient} backdrop-blur-xl hover:scale-105 transition-all duration-300 cursor-default group`}>
-      <div className="flex items-start gap-4">
-        <div className="p-3 bg-primary/10 rounded-xl text-primary group-hover:scale-110 transition-transform duration-300">
-          {icon}
-        </div>
-        <div className="flex-1">
-          <p className="text-xs text-muted-foreground uppercase tracking-wide mb-1">{title}</p>
-          <p className="text-3xl font-bold text-foreground mb-1">{value}</p>
-          <p className="text-xs text-muted-foreground">{description}</p>
+          {/* Action Buttons */}
+          <div className="pt-4 space-y-3">
+            <Button
+              className="w-full bg-primary hover:bg-primary/90 text-primary-foreground shadow-lg hover:shadow-xl transition-all duration-300"
+              size="lg"
+              onClick={(e) => {
+                e.stopPropagation();
+                window.open("https://github.com/prafulpotluri", "_blank");
+              }}
+            >
+              <Github className="w-5 h-5 mr-2" />
+              View on GitHub
+              <ExternalLink className="w-4 h-4 ml-2" />
+            </Button>
+            <p className="text-center text-sm text-muted-foreground">
+              Click anywhere to flip back
+            </p>
+          </div>
         </div>
       </div>
-    </Card>
+    </div>
   );
 };
 
