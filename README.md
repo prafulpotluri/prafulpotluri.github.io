@@ -8,7 +8,7 @@ Visit the live portfolio: [https://prafulpotluri.github.io/](https://prafulpotlu
 
 ## 🛠️ Technologies Used
 
-This portfolio is built with modern web technologies:
+This portfolio is built with modern web technologies :
 
 - **React** - UI component library
 - **TypeScript** - Type-safe JavaScript
