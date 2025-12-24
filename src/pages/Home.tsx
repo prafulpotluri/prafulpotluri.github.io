@@ -9,7 +9,7 @@ const Home = () => {
   const handleDownloadResume = () => {
     // Create a link element and trigger download
     const link = document.createElement('a');
-    link.href = '/Praful_Resume.pdf';
+    link.href = 'public/Praful_Resume.pdf';
     link.download = 'Praful_Chand_Potluri_Resume.pdf';
     document.body.appendChild(link);
     link.click();
