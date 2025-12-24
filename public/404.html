@@ -1,0 +1,31 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Redirecting…</title>
+
+    <!--
+      GitHub Pages SPA deep-link fix:
+      When someone opens /about (or refreshes), GitHub Pages serves 404.html.
+      We store the intended URL in sessionStorage, then redirect to / where
+      index.html restores it before React Router mounts.
+    -->
+    <script type="text/javascript">
+      (function () {
+        var redirect =
+          window.location.pathname +
+          window.location.search +
+          window.location.hash;
+
+        // Prevent a loop if someone hits / directly
+        if (redirect && redirect !== "/") {
+          sessionStorage.setItem("spa:redirect", redirect);
+        }
+
+        window.location.replace(window.location.origin + "/");
+      })();
+    </script>
+  </head>
+  <body></body>
+</html>
