@@ -10,7 +10,7 @@ const Education = () => {
       icon: GraduationCap,
     },
     {
-      degree: "Bachelor of Technology in Computer Science",
+      degree: "Bachelor of Technology in Mechanical Engineering",
       institution: "Jawaharlal Nehru Technological University",
       location: "India",
       date: "Graduated November 2021",
