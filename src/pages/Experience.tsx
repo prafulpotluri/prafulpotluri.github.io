@@ -2,6 +2,18 @@ import { Briefcase, MapPin, Calendar } from "lucide-react";
 
 const Experience = () => {
   const experiences = [
+   {
+      title: "Data Analyst",
+      company: "Vforce Infotech",
+      location: "Edison, NJ",
+      period: "August 2025 – Present",
+      responsibilities: [
+        "Analyzing large-scale fixed income trade and pricing data using complex SQL queries to support portfolio managers in identifying yield trends, spread movements, and liquidity patterns across bond classes.",
+        "Developing interactive Power BI dashboards to visualize fixed income metrics such as yield curves, duration, convexity, and credit spreads—enabling traders and risk teams to make timely investment decisions.",
+        "Building automated data pipelines in Azure Data Factory (ADF) to ingest, transform, and standardize bond issuance, maturity, and rating data from custodians, Bloomberg feeds, and internal repositories. Used Python (Pandas,NumPy, SciPy) to perform time-series analysis on historical bond prices, treasury yield shifts, and credit riskindicators, generating alpha signals for desk strategists.Compiled utilization and scheduling reports, which supported data-driven decision-making for space usage and staffing",
+        "Collaborated with fixed income trading desks to produce daily reports on mark-to-market positions, unrealized P&L, and risk exposure for government bonds, corporate debt, and mortgage-backed securities.",
+      ],
+    },
     {
       title: "Data Information Associate",
       company: "Western Michigan University",
