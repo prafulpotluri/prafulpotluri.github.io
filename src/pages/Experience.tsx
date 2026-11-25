@@ -1,16 +1,29 @@
 import { Briefcase, MapPin, Calendar } from "lucide-react";
 
 const Experience = () => {
-  const experiences = [
-   {
+    const experiences = [
+    {
+      title: "Philanthropic Services and Development Database Manager",
+      company: "Kalamazoo Community Foundation",
+      location: "Kalamazoo, MI",
+      period: "April 2026 – Present",
+      responsibilities: [
+        "Oversee and maintain the CRM database, managing data entry and optimizing system architecture including tables, field standards, tags, and codes to ensure the highest standards of data integrity and donor confidentiality.",
+        "Develop and implement data workflows and entry procedures in coordination with IT and Finance teams; serve as the primary technical resource, providing CRM training and guidance across the organization.",
+        "Use Power BI and advanced Excel to analyze giving data, track fundraising progress, and build audience profiles, turning data into interactive dashboards and actionable insights to identify donor upgrade opportunities.",
+        "Partner with the Marketing & Communications team to segment audience data, generate targeted mailing and email lists, and provide summaries and performance metrics of departmental activities to leadership.",
+        "Build relationships across diverse constituencies, applying an equitable and inclusive lens to daily operations while supporting donor engagement through events and administrative stewardship.",
+      ],
+    },
+    {
       title: "Data Analyst",
       company: "Vforce Infotech",
       location: "Edison, NJ",
-      period: "August 2025 – Present",
+      period: "August 2025 – April 2026",
       responsibilities: [
-        "Analyzing large-scale fixed income trade and pricing data using complex SQL queries to support portfolio managers in identifying yield trends, spread movements, and liquidity patterns across bond classes.",
-        "Developing interactive Power BI dashboards to visualize fixed income metrics such as yield curves, duration, convexity, and credit spreads—enabling traders and risk teams to make timely investment decisions.",
-        "Building automated data pipelines in Azure Data Factory (ADF) to ingest, transform, and standardize bond issuance, maturity, and rating data from custodians, Bloomberg feeds, and internal repositories. Used Python (Pandas,NumPy, SciPy) to perform time-series analysis on historical bond prices, treasury yield shifts, and credit riskindicators, generating alpha signals for desk strategists.Compiled utilization and scheduling reports, which supported data-driven decision-making for space usage and staffing",
+        "Analyzed large-scale fixed income trade and pricing data using complex SQL queries to support portfolio managers in identifying yield trends, spread movements, and liquidity patterns across bond classes.",
+        "Developed interactive Power BI dashboards to visualize fixed income metrics such as yield curves, duration, convexity, and credit spreads, enabling traders and risk teams to make timely investment decisions.",
+        "Built automated data pipelines in Azure Data Factory (ADF) to ingest, transform, and standardize bond issuance, maturity, and rating data from custodians, Bloomberg feeds, and internal repositories, and used Python (Pandas, NumPy, SciPy) for time-series analysis on bond prices, treasury yield shifts, and credit risk indicators.",
         "Collaborated with fixed income trading desks to produce daily reports on mark-to-market positions, unrealized P&L, and risk exposure for government bonds, corporate debt, and mortgage-backed securities.",
       ],
     },
